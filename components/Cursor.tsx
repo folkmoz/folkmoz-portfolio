@@ -30,10 +30,12 @@ const Cursor = () => {
 
   const moveCursor = contextSafe((e: MouseEvent) => {
     if (!xTo.current || !yTo.current) return;
-    xTo.current(e.clientX);
-    yTo.current(e.clientY);
 
     const isTarget = (e.target as HTMLElement).matches("a, button");
+
+    xTo.current(e.clientX + (isTarget ? 0 : 10));
+    yTo.current(e.clientY + (isTarget ? 0 : 20));
+
     gsap.to(cursor.current, {
       width: isTarget ? 100 : 16,
       height: isTarget ? 100 : 16,
@@ -41,10 +43,12 @@ const Cursor = () => {
       ease: "power4",
     });
 
-    gsap.to(tooltip.current, {
-      opacity: isTarget ? 1 : 0,
-      duration: 0.8,
-    });
+    if (tooltip.current) {
+      gsap.to(tooltip.current, {
+        opacity: isTarget ? 1 : 0,
+        duration: 0.8,
+      });
+    }
 
     if (isTarget) setIsHovering(true);
     else setIsHovering(false);
