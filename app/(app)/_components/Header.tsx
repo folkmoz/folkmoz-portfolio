@@ -3,15 +3,15 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const Header = () => {
-  // useGSAP(() => {
-  //   gsap.from("header", {
-  //     yPercent: -100,
-  //     opacity: 0,
-  //     delay: 3.2,
-  //     duration: 1,
-  //     ease: "back.out(1.4)",
-  //   });
-  // }, []);
+  useGSAP(() => {
+    gsap.from("header", {
+      yPercent: -100,
+      opacity: 0,
+      delay: 3.2,
+      duration: 1,
+      ease: "back.out(1.4)",
+    });
+  }, []);
 
   return (
     <header className="absolute top-0 z-50 w-full">

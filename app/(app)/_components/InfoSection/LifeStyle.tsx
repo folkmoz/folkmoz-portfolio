@@ -8,33 +8,39 @@ import SecondarySection from "#/app/(app)/_components/InfoSection/LifeStyleSecti
 import ThirdSection from "#/app/(app)/_components/InfoSection/LifeStyleSections/ThirdSection";
 
 const LifeStyle = () => {
+  const [scrollTween, setScrollTween] = useState<gsap.core.Tween>();
   const scrollerWrapperRef = useRef<HTMLDivElement | null>(null);
   const scrollerRef = useRef<HTMLDivElement | null>(null);
 
   const [pinnedCV, setPinnedCV] = useState(false);
-  const scrollTween = useRef<gsap.core.Tween>();
+  // const scrollTween = useRef<gsap.core.Tween>();
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const containerWidth =
-      scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
+      const containerWidth =
+        scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
 
-    gsap.to(scrollerRef.current, {
-      x: () => -containerWidth,
-      ease: "none",
+      const tl = gsap.to(scrollerRef.current, {
+        x: () => -containerWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: scrollerRef.current,
+          start: "top top",
+          end: () => `+=${containerWidth}`,
+          scrub: 0.5,
+          pin: true,
+        },
+      });
 
-      scrollTrigger: {
-        trigger: scrollerRef.current,
-        start: "top top",
-        end: () => `+=${containerWidth}`,
-        scrub: 0.5,
-        pin: true,
-        markers: true,
-        invalidateOnRefresh: true,
-      },
-    });
-  });
+      setScrollTween(tl);
+    },
+    {
+      scope: scrollerWrapperRef,
+      dependencies: [],
+    },
+  );
 
   // useGSAP(
   //   () => {
@@ -70,14 +76,11 @@ const LifeStyle = () => {
           ref={scrollerRef}
           className="flex h-screen w-[350%] flex-nowrap overflow-hidden"
         >
-          <FirstSection
-            setPinned={setPinnedCV}
-            scrollTween={scrollTween.current!}
-          />
-          <SecondarySection scrollTween={scrollTween.current!} />
-          <ThirdSection scrollTween={scrollTween.current!} />
+          <FirstSection setPinned={setPinnedCV} scrollTween={scrollTween!} />
+          <SecondarySection scrollTween={scrollTween!} />
+          <ThirdSection scrollTween={scrollTween!} />
         </section>
-        <Canvas pinnedCV={pinnedCV} scrollTween={scrollTween.current!} />
+        <Canvas pinnedCV={pinnedCV} scrollTween={scrollTween!} />
       </div>
     </>
   );
