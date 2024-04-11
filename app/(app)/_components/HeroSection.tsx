@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRightIcon } from "lucide-react";
 
 const HeroSection = () => {
-  const [finishedLoading, setFinishedLoading] = useState(true);
+  const [finishedLoading, setFinishedLoading] = useState(false);
   const wavingHand = useRef<HTMLDivElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
@@ -36,31 +36,31 @@ const HeroSection = () => {
         scale: 0,
       });
 
-      // const tl = gsap.timeline({
-      //   onComplete: () => {
-      //     setFinishedLoading(true);
-      //   },
-      // });
-      // tl.to(wavingHand.current, {
-      //   scale: 1,
-      //   delay: 0.3,
-      //   duration: 0.5,
-      //   ease: "back.out(1.4)",
-      // })
-      //   .add(waveDown())
-      //   .add(waveUp())
-      //   .add(waveDown())
-      //   .add(waveUp())
-      //   .add(waveDown())
-      //   .to(wavingHand.current, {
-      //     rotate: 0,
-      //   })
-      //   .to(wavingHand.current, {
-      //     x: 0,
-      //     y: 0,
-      //     duration: 1,
-      //     ease: "power4.out",
-      //   });
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setFinishedLoading(true);
+        },
+      });
+      tl.to(wavingHand.current, {
+        scale: 1,
+        delay: 0.3,
+        duration: 0.5,
+        ease: "back.out(1.4)",
+      })
+        .add(waveDown())
+        .add(waveUp())
+        .add(waveDown())
+        .add(waveUp())
+        .add(waveDown())
+        .to(wavingHand.current, {
+          rotate: 0,
+        })
+        .to(wavingHand.current, {
+          x: 0,
+          y: 0,
+          duration: 1,
+          ease: "power4.out",
+        });
 
       gsap.from(wavingHand.current.querySelector("div"), {
         opacity: 0,

@@ -7,7 +7,7 @@ import InfoSection from "#/app/(app)/_components/InfoSection/InfoSection";
 const Home = () => {
   return (
     <>
-      {/*<Header />*/}
+      <Header />
       <main className="flex flex-col items-center justify-center">
         {/*<HeroSection />*/}
         <InfoSection />

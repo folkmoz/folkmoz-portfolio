@@ -10,7 +10,7 @@ const Cursor = () => {
   const cursor = useRef<HTMLDivElement | null>(null);
   const tooltip = useRef<HTMLSpanElement | null>(null);
 
-  const { context, contextSafe } = useGSAP(
+  const { contextSafe } = useGSAP(
     () => {
       gsap.set(cursor.current, {
         opacity: 0,
@@ -84,7 +84,7 @@ const Cursor = () => {
   return (
     <div
       ref={cursor}
-      className="bg-primary pointer-events-none fixed top-0 left-0 z-[9999] flex size-4 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
+      className="bg-primary pointer-events-none fixed top-0 left-0 z-[9999] flex size-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full mix-blend-difference"
     >
       {isHovering ? (
         <span ref={tooltip} className="text-primary-foreground opacity-0">

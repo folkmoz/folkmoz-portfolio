@@ -1,11 +1,12 @@
+// @ts-nocheck
 import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-// @ts-ignore
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { gsap } from "gsap";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -16,61 +17,83 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function HeartModel(props: JSX.IntrinsicElements["group"]) {
-  const group = useRef<THREE.Group>();
-  const { nodes, materials } = useGLTF(
-    "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/heart/model.gltf",
-  ) as GLTFResult;
+type HeartModelProps = JSX.IntrinsicElements["group"] & {
+  scrollTween: gsap.core.Tween;
+};
 
-  const { viewport, camera } = useThree();
+export default function HeartModel(props: HeartModelProps) {
+  const group = useRef<THREE.Group>();
+  const { nodes, materials } = useGLTF("/models/BlackHeart.gltf") as GLTFResult;
 
   useFrame(({ clock }) => {
     if (group.current) {
-      group.current.rotation.y = Math.sin(clock.getElapsedTime()) * 0.5;
+      group.current.rotation.y = Math.sin(clock.getElapsedTime()) * 1.2;
     }
   });
-
   useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
     if (!group.current) return;
-
     const g = group.current;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#LifeStyle",
-        start: "top 20%",
-        end: "bottom bottom",
-        markers: true,
-        scrub: 1,
-      },
-    });
+    if (!props.scrollTween) return;
 
-    if (viewport.width < 768) {
-    }
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#Music",
+          start: "45% bottom",
+          end: "50% bottom",
+          containerAnimation: props.scrollTween,
+          scrub: 1,
+          anticipatePin: 1,
+        },
+      })
+      .from(g.position, {
+        y: -6,
+      });
 
-    tl.fromTo(
-      g.position,
-      {
-        y: -2,
-      },
-      {
-        y: -2,
-        x: 2,
-      },
-    );
-  });
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#Music",
+          start: "67% bottom",
+          end: "58% 70%",
+          containerAnimation: props.scrollTween,
+          scrub: 1,
+          anticipatePin: 1,
+        },
+      })
+      .to(g.position, {
+        y: 2.8,
+        x: 0,
+        z: -0.3,
+      });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#Music",
+          start: "85% bottom",
+          end: "90% bottom",
+          containerAnimation: props.scrollTween,
+          scrub: 1,
+          anticipatePin: 1,
+        },
+      })
+      .to(g.position, {
+        y: 5,
+      });
+  }, [props.scrollTween]);
 
   return (
-    <group ref={group} {...props} dispose={null} position={[0, 0, 2]}>
+    <group ref={group} {...props} dispose={null} position={[-1.8, -1.2, 0.3]}>
       <mesh
         geometry={nodes.heart_teamRed.geometry}
         material={materials["Red.015"]}
-        rotation={[Math.PI / 2, -0.5, 1]}
+        rotation={[Math.PI / 2, 0, 0]}
       />
     </group>
   );
 }
 
-useGLTF.preload(
-  "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/heart/model.gltf",
-);
+useGLTF.preload("/models/BlackHeart.gltf");

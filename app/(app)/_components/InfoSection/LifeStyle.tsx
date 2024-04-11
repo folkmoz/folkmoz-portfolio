@@ -3,23 +3,26 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef, useState } from "react";
+import FirstSection from "#/app/(app)/_components/InfoSection/LifeStyleSections/FirstSection";
+import SecondarySection from "#/app/(app)/_components/InfoSection/LifeStyleSections/SecondarySection";
+import ThirdSection from "#/app/(app)/_components/InfoSection/LifeStyleSections/ThirdSection";
 
 const LifeStyle = () => {
-  const container = useRef<HTMLDivElement | null>(null);
   const scrollerWrapperRef = useRef<HTMLDivElement | null>(null);
   const scrollerRef = useRef<HTMLDivElement | null>(null);
-  const title = useRef<HTMLDivElement | null>(null);
 
   const [pinnedCV, setPinnedCV] = useState(false);
+  const scrollTween = useRef<gsap.core.Tween>();
 
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
+      if (!scrollerRef.current) return;
 
       const containerWidth =
         scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
 
-      gsap.to(scrollerRef.current, {
+      scrollTween.current = gsap.to(scrollerRef.current, {
         x: () => -containerWidth,
         ease: "none",
 
@@ -29,42 +32,13 @@ const LifeStyle = () => {
           end: () => `+=${containerWidth}`,
           scrub: 0.5,
           pin: true,
-          markers: false,
-          invalidateOnRefresh: true,
+          // invalidateOnRefresh: true,
         },
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 40%",
-          end: "90% bottom",
-          scrub: 1,
-          markers: false,
-        },
-        onComplete: () => {
-          setPinnedCV(true);
-        },
-        onReverseComplete: () => {
-          setPinnedCV(false);
-        },
-      });
-
-      tl.from(title.current, {
-        y: -200,
-        opacity: 0,
-        scale: 3,
-        duration: 1,
-      }).to(title.current!.querySelector("h3 > span"), {
-        textShadow: "0px 3px 20px #00000070",
-        color: "#fff",
-      });
-
-      tl.to(title.current?.querySelectorAll("i")!, {
-        color: "#ff7200",
       });
     },
-    { scope: container },
+    {
+      scope: scrollerWrapperRef,
+    },
   );
 
   return (
@@ -73,32 +47,16 @@ const LifeStyle = () => {
         <section
           id="ScrollerWrapper"
           ref={scrollerRef}
-          className="relative flex h-screen w-[400%] flex-nowrap"
+          className="relative flex h-screen w-[350%] flex-nowrap overflow-hidden"
         >
-          <div
-            ref={container}
-            className="relative flex h-screen w-full items-center justify-center will-change-transform"
-            id="LifeStyle"
-          >
-            <div className="relative z-5 text-8xl font-bold xl:text-9xl">
-              <div ref={title} className="mt-48">
-                <h3>
-                  <span>Know me</span>
-                  <i>better</i>
-                </h3>
-              </div>
-            </div>
-          </div>
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div
-              key={index}
-              className="relative flex h-full w-full items-center justify-center text-white will-change-transform"
-            >
-              {index + 1}
-            </div>
-          ))}
+          <FirstSection
+            setPinned={setPinnedCV}
+            scrollTween={scrollTween.current!}
+          />
+          <SecondarySection scrollTween={scrollTween.current!} />
+          <ThirdSection scrollTween={scrollTween.current!} />
         </section>
-        <Canvas pinnedCV={pinnedCV} />
+        <Canvas pinnedCV={pinnedCV} scrollTween={scrollTween.current!} />
       </div>
     </>
   );

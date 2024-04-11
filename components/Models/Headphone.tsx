@@ -1,11 +1,11 @@
+// @ts-nocheck
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
-// @ts-ignore
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 type GLTFResult = GLTF & {
@@ -27,41 +27,105 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Headphone(props: JSX.IntrinsicElements["group"]) {
+type HeadphoneProps = JSX.IntrinsicElements["group"] & {
+  scrollTween: gsap.core.Tween;
+};
+
+export default function Headphone(props: HeadphoneProps) {
+  const [rotation, setRotation] = useState(false);
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useGLTF("/models/Headphones.gltf") as GLTFResult;
+
+  useFrame(({ clock }) => {
+    if (group.current) {
+      if (rotation) {
+        group.current.rotation.y = group.current.rotation.y + 0.005;
+      }
+    }
+  });
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (!group.current) return;
-
     const g = group.current;
 
-    const tl = gsap.timeline({
+    // Scale for the first time
+    gsap.from(g.position, {
+      y: -2.5,
+      z: -2,
       scrollTrigger: {
         trigger: "#LifeStyle",
         start: "top 80%",
-        end: "bottom bottom",
+        end: "bottom 95%",
         markers: false,
         scrub: 1,
       },
     });
-    //
-    // tl.from(g?.position, {
-    //   y: -2.5,
-    //   z: -2,
-    // });
-  });
+    if (!props.scrollTween) return;
 
-  useFrame(({ clock }) => {
-    if (group.current) {
-      // const rotation = 1.25 + Math.sin(clock.getElapsedTime()) * 0.25; // This will give a value between 0 and 1.5
-      // group.current.rotation.y = rotation;
-    }
-  });
+    // Rotate the headphone
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#LifeStyle",
+          start: "top top",
+          end: "bottom center",
+          containerAnimation: props.scrollTween,
+          scrub: 1,
+        },
+        onComplete: () => setRotation(true),
+        onReverseComplete: () => setRotation(false),
+      })
+      .to(g.rotation, {
+        y: 1.6 * Math.PI,
+
+        duration: 1,
+      });
+
+    // Move the headphone
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#LifeStyle",
+          start: "10% top",
+          end: "bottom top",
+          containerAnimation: props.scrollTween,
+          scrub: 1,
+        },
+      })
+      .to(g.position, {
+        x: 3.5,
+        y: 0.7,
+        z: 1,
+      })
+      .to(
+        g?.scale,
+        {
+          x: 0.7,
+          y: 0.7,
+          z: 0.7,
+        },
+        0,
+      );
+
+    // Move out the headphone
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#Music",
+          start: "35% center",
+          end: "45% center",
+          containerAnimation: props.scrollTween,
+          scrub: 1,
+        },
+      })
+      .to(g.position, {
+        y: 4,
+      });
+  }, [props.scrollTween]);
 
   return (
-    <group ref={group} {...props} dispose={null} position={[0, -1.2, 2]}>
+    <group ref={group} {...props} dispose={null} position={[0, -1.5, 2]}>
       <mesh
         geometry={nodes.Ear_Cup.geometry}
         material={nodes.Ear_Cup.material}

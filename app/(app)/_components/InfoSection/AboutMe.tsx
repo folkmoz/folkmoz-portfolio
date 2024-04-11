@@ -3,10 +3,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedText from "#/components/AnimatedText";
 import Flare from "#/components/Flare";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { splitWords } from "#/lib/utils";
-import MyImage from "#/public/images/Me.jpg";
-import Image from "next/image";
 
 const phrase = `        Hey there! I'm folk, a 3rd-year Information Technology student at Bangkok University. I have a huge passion for coding, especially web development. In my free time, you'll likely find me working on coding projects or watching various YouTube contents.`;
 
@@ -16,82 +14,75 @@ const AboutMe = () => {
   const profileRef = useRef<HTMLImageElement | null>(null);
   const svg = useRef<SVGSVGElement | null>(null);
 
-  useGSAP(
-    () => {
-      gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-      const letters = paragraph.current?.querySelectorAll("span > span");
+    const letters = paragraph.current?.querySelectorAll(".inline-block > span");
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top 10%",
-            end: "70% center",
-            scrub: true,
-          },
-        })
-        .fromTo(letters!, { opacity: 0.4 }, { opacity: 1, stagger: 0.01 });
-
-      gsap.fromTo(
-        profileRef.current,
-        {
-          y: 200,
-        },
-        {
-          y: 0,
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top 60%",
-            end: "bottom 70%",
-            scrub: true,
-            markers: false,
-          },
-        },
-      );
-
-      gsap.from(svg.current, {
-        scale: 0,
-        ease: "none",
+    gsap
+      .timeline({
         scrollTrigger: {
           trigger: container.current,
-          start: "top 40%",
-          end: "center 40%",
-          scrub: 1,
-          markers: false,
+          start: "top top",
+          end: "70% center",
+          scrub: true,
         },
-      });
+      })
+      .fromTo(letters!, { opacity: 0.2 }, { opacity: 1, stagger: 0.01 });
 
-      gsap.to(container.current, {
-        opacity: 0,
+    gsap.fromTo(
+      profileRef.current,
+      {
+        y: 200,
+      },
+      {
+        y: 0,
         scrollTrigger: {
           trigger: container.current,
-          start: "center 5%",
-          end: "bottom 30%",
-          scrub: 1,
-          markers: false,
+          start: "top 60%",
+          end: "bottom 70%",
+          scrub: true,
         },
-      });
+      },
+    );
 
-      gsap.to(container.current, {
-        backgroundColor: "#000",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "bottom bottom",
-          end: "bottom center",
-          scrub: 1,
-          markers: false,
-        },
-      });
-    },
-    { scope: container },
-  );
+    gsap.from(svg.current, {
+      scale: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 40%",
+        end: "center 40%",
+        scrub: 1,
+      },
+    });
+
+    gsap.to(container.current, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: container.current,
+        start: "center 5%",
+        end: "bottom 30%",
+        scrub: 1,
+      },
+    });
+
+    // gsap.to(container.current, {
+    //   backgroundColor: "#000",
+    //   scrollTrigger: {
+    //     trigger: container.current,
+    //     start: "bottom bottom",
+    //     end: "bottom center",
+    //     scrub: 1,
+    //   },
+    // });
+  });
 
   return (
     <section
-      id="about-me"
+      id="AboutMe"
       ref={container}
-      className="text-accent bg-brown relative mb-32 min-h-screen p-8 pb-[10vh] lg:pb-[30vh]"
+      className="text-accent bg-brown relative mb-32 min-h-screen p-8 pb-[10vh] opacity-[0.99] lg:pb-[30vh]"
     >
       <div className="relative flex flex-col gap-8 p-4 lg:pt-20 lg:px-20">
         <div className="relative z-5">
@@ -100,9 +91,9 @@ const AboutMe = () => {
           </h2>
         </div>
         <div className="relative z-[2] flex justify-center">
-          <Image
+          <img
             ref={profileRef}
-            src={MyImage}
+            src={"/images/Me.jpg"}
             alt="Jirantanapat Kaeosomboon"
             width={500}
             className="rounded-xl object-cover grayscale-100"

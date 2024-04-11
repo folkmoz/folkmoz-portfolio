@@ -3,15 +3,18 @@ import { Suspense, useRef } from "react";
 import Headphone from "#/components/Models/Headphone";
 import HeartModel from "#/components/Models/Heart";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Environment } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import Stone from "#/components/Models/Stone";
+import PirateCap from "#/components/Models/PirateCap";
 
 type CanvasProps = {
-  pinnedCv: boolean;
+  pinnedCV: boolean;
+  scrollTween: gsap.core.Tween;
 };
 
-const Canvas = ({ pinnedCv }: CanvasProps) => {
+const Canvas = ({ pinnedCV, scrollTween }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useGSAP(() => {
@@ -29,22 +32,26 @@ const Canvas = ({ pinnedCv }: CanvasProps) => {
 
   return (
     <OriCanvas
+      id={"Canvas"}
       ref={canvasRef}
       style={{
+        pointerEvents: "none",
         width: "100vw",
         height: "100svh",
-        position: pinnedCv ? "fixed" : "absolute",
+        position: pinnedCV ? "fixed" : "absolute",
         inset: 0,
         zIndex: -1,
       }}
-      // camera={{ position: [0, 0, 20], fov: 50 }}
     >
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       {/*<Suspense fallback={null}>*/}
-      <Headphone />
-      {/*<HeartModel />*/}
+      <Headphone scrollTween={scrollTween} />
+      {/*<Stone />*/}
+      <PirateCap scrollTween={scrollTween} />
+      <HeartModel scrollTween={scrollTween} />
       {/*</Suspense>*/}
+      {/*<OrbitControls  />*/}
       <Environment preset="sunset" />
     </OriCanvas>
   );
