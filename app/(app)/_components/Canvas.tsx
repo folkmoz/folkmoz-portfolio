@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import Stone from "#/components/Models/Stone";
 import PirateCap from "#/components/Models/PirateCap";
 
 type CanvasProps = {
@@ -15,25 +14,9 @@ type CanvasProps = {
 };
 
 const Canvas = ({ pinnedCV, scrollTween }: CanvasProps) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // gsap.to(canvasRef.current, {
-    //   position: "fixed",
-    //   scrollTrigger: {
-    //     trigger: "#LifeStyle",
-    //     start: "top top",
-    //     end: "bottom bottom",
-    //   },
-    // });
-  });
-
   return (
     <OriCanvas
       id={"Canvas"}
-      ref={canvasRef}
       style={{
         pointerEvents: "none",
         width: "100vw",

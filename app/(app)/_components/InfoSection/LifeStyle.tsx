@@ -14,32 +14,53 @@ const LifeStyle = () => {
   const [pinnedCV, setPinnedCV] = useState(false);
   const scrollTween = useRef<gsap.core.Tween>();
 
-  useGSAP(
-    () => {
-      gsap.registerPlugin(ScrollTrigger);
-      if (!scrollerRef.current) return;
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-      const containerWidth =
-        scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
+    const containerWidth =
+      scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
 
-      scrollTween.current = gsap.to(scrollerRef.current, {
-        x: () => -containerWidth,
-        ease: "none",
+    gsap.to(scrollerRef.current, {
+      x: () => -containerWidth,
+      ease: "none",
 
-        scrollTrigger: {
-          trigger: scrollerRef.current,
-          start: "top top",
-          end: () => `+=${containerWidth}`,
-          scrub: 0.5,
-          pin: true,
-          // invalidateOnRefresh: true,
-        },
-      });
-    },
-    {
-      scope: scrollerWrapperRef,
-    },
-  );
+      scrollTrigger: {
+        trigger: scrollerRef.current,
+        start: "top top",
+        end: () => `+=${containerWidth}`,
+        scrub: 0.5,
+        pin: true,
+        markers: true,
+        invalidateOnRefresh: true,
+      },
+    });
+  });
+
+  // useGSAP(
+  //   () => {
+  //     gsap.registerPlugin(ScrollTrigger);
+  //
+  //     const containerWidth =
+  //       scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
+  //
+  //     scrollTween.current = gsap.to(scrollerRef.current, {
+  //       x: () => -containerWidth,
+  //       ease: "none",
+  //
+  //       scrollTrigger: {
+  //         trigger: scrollerRef.current,
+  //         start: "top top",
+  //         end: () => `+=${containerWidth}`,
+  //         scrub: 0.5,
+  //         pin: true,
+  //         invalidateOnRefresh: true,
+  //       },
+  //     });
+  //   },
+  //   {
+  //     scope: scrollerWrapperRef,
+  //   },
+  // );
 
   return (
     <>
@@ -47,7 +68,7 @@ const LifeStyle = () => {
         <section
           id="ScrollerWrapper"
           ref={scrollerRef}
-          className="relative flex h-screen w-[350%] flex-nowrap overflow-hidden"
+          className="flex h-screen w-[350%] flex-nowrap overflow-hidden"
         >
           <FirstSection
             setPinned={setPinnedCV}

@@ -60,122 +60,122 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
     });
   });
 
-  useGSAP(
-    () => {
-      if (!scrollTween) return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      gsap.to(columnsRef.current, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 70%",
-          end: "40% center",
-          scrub: 1,
-          containerAnimation: scrollTween,
-        },
-        onStart: () => {
-          setDoAddEvent(true);
-        },
-        onReverseComplete: () => {
-          setDoAddEvent(false);
-        },
-      });
-
-      const columns = columnsRef.current;
-      // @ts-ignore
-      const [column1, column2, column3, column4] = columns!.children;
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-            containerAnimation: scrollTween,
-          },
-        })
-        .fromTo(column1!, { yPercent: 20 }, { yPercent: -40 })
-        .fromTo(column2!, { yPercent: -78 }, { yPercent: 50 }, 0)
-        .fromTo(column3!, { yPercent: 40 }, { yPercent: -35 }, 0)
-        .fromTo(column4!, { yPercent: -120 }, { yPercent: 10 }, 0);
-
-      const letters = textRef.current?.querySelectorAll("div > h3 > span")!;
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "left 70%",
-            end: "bottom 35%",
-            scrub: 1,
-            containerAnimation: scrollTween,
-          },
-        })
-        .fromTo(
-          textRef.current,
-          {
-            xPercent: 100,
-          },
-          {
-            xPercent: -150,
-          },
-        );
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "left center",
-            end: "bottom 40%",
-            scrub: 1,
-            containerAnimation: scrollTween,
-          },
-        })
-        .fromTo(
-          subTextRef.current,
-          {
-            xPercent: 150,
-          },
-          {
-            xPercent: -150,
-          },
-        );
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "44% 70%",
-            end: "bottom top",
-            scrub: 1,
-            containerAnimation: scrollTween,
-          },
-        })
-        .fromTo(
-          paragraphRef.current,
-          {
-            xPercent: 30,
-          },
-          {
-            xPercent: -200,
-          },
-        );
-
-      gsap.to(letters!, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 30%",
-          end: "center 60%",
-          scrub: true,
-          containerAnimation: scrollTween,
-        },
-        stagger: 0.1,
-        color: "#7fffd4",
-      });
-    },
-    { dependencies: [scrollTween] },
-  );
+  // useGSAP(
+  //   () => {
+  //     if (!scrollTween) return;
+  //     gsap.registerPlugin(ScrollTrigger);
+  //
+  //     gsap.to(columnsRef.current, {
+  //       opacity: 1,
+  //       scrollTrigger: {
+  //         trigger: container.current,
+  //         start: "top 70%",
+  //         end: "40% center",
+  //         scrub: 1,
+  //         containerAnimation: scrollTween,
+  //       },
+  //       onStart: () => {
+  //         setDoAddEvent(true);
+  //       },
+  //       onReverseComplete: () => {
+  //         setDoAddEvent(false);
+  //       },
+  //     });
+  //
+  //     const columns = columnsRef.current;
+  //     // @ts-ignore
+  //     const [column1, column2, column3, column4] = columns!.children;
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: container.current,
+  //           start: "top bottom",
+  //           end: "bottom top",
+  //           scrub: 1,
+  //           containerAnimation: scrollTween,
+  //         },
+  //       })
+  //       .fromTo(column1!, { yPercent: 20 }, { yPercent: -40 })
+  //       .fromTo(column2!, { yPercent: -78 }, { yPercent: 50 }, 0)
+  //       .fromTo(column3!, { yPercent: 40 }, { yPercent: -35 }, 0)
+  //       .fromTo(column4!, { yPercent: -120 }, { yPercent: 10 }, 0);
+  //
+  //     const letters = textRef.current?.querySelectorAll("div > h3 > span")!;
+  //
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: container.current,
+  //           start: "left 70%",
+  //           end: "bottom 35%",
+  //           scrub: 1,
+  //           containerAnimation: scrollTween,
+  //         },
+  //       })
+  //       .fromTo(
+  //         textRef.current,
+  //         {
+  //           xPercent: 100,
+  //         },
+  //         {
+  //           xPercent: -150,
+  //         },
+  //       );
+  //
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: container.current,
+  //           start: "left center",
+  //           end: "bottom 40%",
+  //           scrub: 1,
+  //           containerAnimation: scrollTween,
+  //         },
+  //       })
+  //       .fromTo(
+  //         subTextRef.current,
+  //         {
+  //           xPercent: 150,
+  //         },
+  //         {
+  //           xPercent: -150,
+  //         },
+  //       );
+  //
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: container.current,
+  //           start: "44% 70%",
+  //           end: "bottom top",
+  //           scrub: 1,
+  //           containerAnimation: scrollTween,
+  //         },
+  //       })
+  //       .fromTo(
+  //         paragraphRef.current,
+  //         {
+  //           xPercent: 30,
+  //         },
+  //         {
+  //           xPercent: -200,
+  //         },
+  //       );
+  //
+  //     gsap.to(letters!, {
+  //       scrollTrigger: {
+  //         trigger: container.current,
+  //         start: "top 30%",
+  //         end: "center 60%",
+  //         scrub: true,
+  //         containerAnimation: scrollTween,
+  //       },
+  //       stagger: 0.1,
+  //       color: "#7fffd4",
+  //     });
+  //   },
+  //   { dependencies: [scrollTween] },
+  // );
 
   useEffect(() => {
     if (doAddEvent) {
@@ -308,23 +308,23 @@ const ImageItem = ({
 }: ImageItemProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (!scrollTween) return;
-
-    gsap.to(ref.current, {
-      webkitClipPath: "inset(0% 0% 0% 0%)",
-      clipPath: "inset(0% 0% 0% 0%)",
-      duration: 1,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "center 90%",
-        containerAnimation: scrollTween,
-      },
-    });
-  }, [scrollTween]);
+  // useGSAP(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //
+  //   if (!scrollTween) return;
+  //
+  //   gsap.to(ref.current, {
+  //     webkitClipPath: "inset(0% 0% 0% 0%)",
+  //     clipPath: "inset(0% 0% 0% 0%)",
+  //     duration: 1,
+  //     ease: "power2.inOut",
+  //     scrollTrigger: {
+  //       trigger: ref.current,
+  //       start: "center 90%",
+  //       containerAnimation: scrollTween,
+  //     },
+  //   });
+  // }, [scrollTween]);
 
   return (
     <div

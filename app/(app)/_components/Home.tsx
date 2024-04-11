@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <Header />
       <main className="flex flex-col items-center justify-center">
-        {/*<HeroSection />*/}
+        <HeroSection />
         <InfoSection />
       </main>
       <svg className="hidden">
