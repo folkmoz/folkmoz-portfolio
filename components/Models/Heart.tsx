@@ -44,7 +44,7 @@ export default function HeartModel(props: HeartModelProps) {
           start: "45% bottom",
           end: "50% bottom",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
           anticipatePin: 1,
         },
       })
@@ -59,13 +59,13 @@ export default function HeartModel(props: HeartModelProps) {
           start: "67% bottom",
           end: "58% 70%",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
           anticipatePin: 1,
         },
       })
       .to(g.position, {
         y: 2.8,
-        x: 0,
+        x: 0.5,
         z: -0.3,
       });
 
@@ -73,10 +73,10 @@ export default function HeartModel(props: HeartModelProps) {
       .timeline({
         scrollTrigger: {
           trigger: "#Music",
-          start: "85% bottom",
-          end: "90% bottom",
+          start: "95% bottom",
+          end: "bottom bottom",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
           anticipatePin: 1,
         },
       })

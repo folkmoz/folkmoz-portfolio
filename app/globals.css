@@ -29,24 +29,24 @@ body::before {
     filter: url(#noiseFilter);
 }
 
-/*#ScrollerContainer::before,*/
-/*#ScrollerContainer::after {*/
-/*    position: absolute;*/
-/*    left: 0;*/
-/*    top: 0;*/
-/*    content: '';*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    z-index: 1;*/
+#ScrollerContainer::before,
+#ScrollerContainer::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 
-/*    opacity: 20%;*/
-/*}*/
+    opacity: 20%;
+}
 
 
-/*#ScrollerContainer::before {*/
-/*    background: #494545;*/
-/*    filter: url(#noiseFilter);*/
-/*}*/
+#ScrollerContainer::before {
+    background: #494545;
+    filter: url(#noiseFilter);
+}
 
 #AboutMe::before {
     content: '';

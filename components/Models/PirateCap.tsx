@@ -70,7 +70,7 @@ export default function PirateCap(props: PirateCapProps) {
           start: "20% bottom",
           end: "50% bottom",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
         },
       })
       .from(g.position, {
@@ -91,7 +91,7 @@ export default function PirateCap(props: PirateCapProps) {
           start: "67% bottom",
           end: "58% 70%",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
           anticipatePin: 1,
         },
       })
@@ -102,6 +102,7 @@ export default function PirateCap(props: PirateCapProps) {
         body.position,
         {
           y: -1.5,
+          z: 4,
         },
         "<",
       )
@@ -115,7 +116,7 @@ export default function PirateCap(props: PirateCapProps) {
       .to(
         body.rotation,
         {
-          y: 3.2,
+          y: 3.1,
         },
         "<",
       );
@@ -124,21 +125,11 @@ export default function PirateCap(props: PirateCapProps) {
       y: -4,
       scrollTrigger: {
         trigger: "#Music",
-        start: "85% bottom",
-        end: "90% 70%",
+        start: "95% bottom",
+        end: "bottom 65%",
         containerAnimation: props.scrollTween,
-        scrub: 1,
+        scrub: true,
         anticipatePin: 1,
-      },
-      onStart: () => {
-        gsap.to("#Music", {
-          overflow: "hidden",
-        });
-      },
-      onReverseComplete: () => {
-        gsap.to("#Music", {
-          overflow: "visible",
-        });
       },
     });
   }, [props.scrollTween]);

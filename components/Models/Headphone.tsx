@@ -71,7 +71,7 @@ export default function Headphone(props: HeadphoneProps) {
           start: "top top",
           end: "bottom center",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
         },
         onComplete: () => setRotation(true),
         onReverseComplete: () => setRotation(false),
@@ -90,7 +90,7 @@ export default function Headphone(props: HeadphoneProps) {
           start: "10% top",
           end: "bottom top",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
         },
       })
       .to(g.position, {
@@ -116,7 +116,7 @@ export default function Headphone(props: HeadphoneProps) {
           start: "35% center",
           end: "45% center",
           containerAnimation: props.scrollTween,
-          scrub: 1,
+          scrub: true,
         },
       })
       .to(g.position, {

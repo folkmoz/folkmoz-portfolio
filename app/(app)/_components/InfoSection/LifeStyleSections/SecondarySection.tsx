@@ -63,7 +63,6 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
   useGSAP(
     () => {
       if (!scrollTween) return;
-      console.log("SecondarySection");
       gsap.registerPlugin(ScrollTrigger);
 
       gsap.to(columnsRef.current, {
@@ -127,8 +126,8 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         .timeline({
           scrollTrigger: {
             trigger: container.current,
-            start: "left center",
-            end: "bottom 40%",
+            start: "5% center",
+            end: "bottom 45%",
             scrub: 1,
             containerAnimation: scrollTween,
           },
@@ -136,10 +135,10 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         .fromTo(
           subTextRef.current,
           {
-            xPercent: 150,
+            xPercent: 100,
           },
           {
-            xPercent: -150,
+            xPercent: -300,
           },
         );
 
@@ -147,7 +146,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         .timeline({
           scrollTrigger: {
             trigger: container.current,
-            start: "44% 70%",
+            start: "center 70%",
             end: "bottom top",
             scrub: 1,
             containerAnimation: scrollTween,
@@ -162,17 +161,28 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             xPercent: -200,
           },
         );
+      //
+      // gsap.to(letters!, {
+      //   scrollTrigger: {
+      //     trigger: container.current,
+      //     start: "top 30%",
+      //     end: "center 60%",
+      //     scrub: true,
+      //     containerAnimation: scrollTween,
+      //   },
+      //   // stagger: 0.1,
+      //   // color: "#7fffd4",
+      // });
 
-      gsap.to(letters!, {
+      gsap.to(container.current, {
         scrollTrigger: {
           trigger: container.current,
-          start: "top 30%",
-          end: "center 60%",
+          start: "center 60%",
+          end: "bottom top",
           scrub: true,
           containerAnimation: scrollTween,
+          toggleClass: "overflow-hidden",
         },
-        stagger: 0.1,
-        color: "#7fffd4",
       });
     },
     { dependencies: [scrollTween] },
@@ -191,91 +201,129 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
       <div
         id="Music"
         ref={container}
-        className="relative flex h-full w-[150%] items-center justify-center will-change-transform"
+        className="relative flex h-full w-[120%] items-center justify-center bg-black will-change-transform"
       >
         <div
           ref={textRef}
-          className="absolute top-1/2 left-[10%] z-[5] w-[120%] -translate-y-1/2"
+          className="absolute top-1/2 left-[10%] z-[5] w-[110%] -translate-y-1/2"
         >
-          <div className="text-8xl font-bold uppercase text-white">
-            <h3>{splitWords('"Without music, life would be a mistake"')}</h3>
+          <div className="relative bg-gradient-to-r from-black to-transparent text-8xl font-bold uppercase text-white">
+            {/*<h3>{splitWords('"Without music, life would be a mistake"')}</h3>*/}
+            <div className="absolute top-[-70px] left-[-70px] size-[70px]">
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 32 32"
+                xmlSpace="preserve"
+                fill="#000000"
+                transform="matrix(-1, 0, 0, -1, 0, 0)"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <g>
+                    {" "}
+                    <g id="right_x5F_quote">
+                      {" "}
+                      <g>
+                        {" "}
+                        <path
+                          style={{ fill: "#ffffff" }}
+                          d="M0,4v12h8c0,4.41-3.586,8-8,8v4c6.617,0,12-5.383,12-12V4H0z"
+                        ></path>
+                        <path
+                          style={{ fill: "#ffffff" }}
+                          d="M20,4v12h8c0,4.41-3.586,8-8,8v4c6.617,0,12-5.383,12-12V4H20z"
+                        ></path>{" "}
+                      </g>{" "}
+                    </g>{" "}
+                  </g>{" "}
+                </g>
+              </svg>
+            </div>
+            <h3>
+              Without <i className="text-green-500">music</i>, life would be a{" "}
+              mistake
+            </h3>
           </div>
         </div>
         <div
           ref={subTextRef}
-          className="absolute top-2/3 left-[30%] z-[5] w-[120%] -translate-y-1/2"
+          className="absolute top-2/3 left-[30%] z-[5] -translate-y-1/2"
         >
-          <div className="text-7xl font-bold uppercase italic leading-[1.5] text-white">
+          <div className="bg-[#8e8064] pr-8 text-7xl font-bold uppercase italic leading-[1.5]">
             <h3>— Friedrich Nietzsche</h3>
           </div>
         </div>
 
         <div
           ref={paragraphRef}
-          className="absolute top-1/2 left-[70%] z-[5] w-[120%] -translate-y-1/2"
+          className="absolute top-1/2 left-[70%] z-[5] w-full -translate-y-1/2"
         >
-          <div className="text-4xl font-bold uppercase  leading-[1.5] text-white">
+          <div className="text-4xl font-medium leading-[1.5] text-white">
             <h3>
-              I extremely like to listen to music, it&apos;s a big part of my
-              life. <br />
-              <span className="ml-12" />I can listen to music all day long,
-              it&apos;s like a therapy for me. <br />
-              <span className="ml-24" />
-              And I was listening to music when I was creating this website
-              also. <br />
-              <span className="ml-36" />
-              So, I can&apos;t imagine my life without music. <i>(folk)</i>
+              <span className="ml-24 text-6xl italic">For me</span>
+              , music is the soundtrack of my life. <br /> I can listen
+              endlessly, it&apos;s therapeutic. I even had it playing <br />{" "}
+              while building this site. So, life without music is unimaginable.
             </h3>
           </div>
         </div>
 
-        <ImageItem
-          src="2.png"
-          right="22%"
-          top="10%"
-          width={300}
-          scrollTween={scrollTween}
-        />
-        <ImageItem src="3.png" right="6%" top={"0"} scrollTween={scrollTween} />
-        <ImageItem
-          src="4.png"
-          right="40%"
-          top={"-5px"}
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="5.png"
-          right="2%"
-          top={"45%"}
-          scrollTween={scrollTween}
-        />
-        <ImageItem src="6.png" right="70%" scrollTween={scrollTween} />
-        <ImageItem
-          src="7.png"
-          right="18%"
-          top={"50%"}
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="8.png"
-          right="55%"
-          top="10%"
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="9.png"
-          right="50%"
-          top="60%"
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="10.png"
-          right="33%"
-          top="50%"
-          scrollTween={scrollTween}
-        />
+        {/*<ImageItem*/}
+        {/*  src="2.png"*/}
+        {/*  right="22%"*/}
+        {/*  top="10%"*/}
+        {/*  width={300}*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
+        {/*<ImageItem src="3.png" right="6%" top={"0"} scrollTween={scrollTween} />*/}
+        {/*<ImageItem*/}
+        {/*  src="4.png"*/}
+        {/*  right="40%"*/}
+        {/*  top={"-5px"}*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
+        {/*<ImageItem*/}
+        {/*  src="5.png"*/}
+        {/*  right="2%"*/}
+        {/*  top={"45%"}*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
+        {/*<ImageItem src="6.png" right="70%" scrollTween={scrollTween} />*/}
+        {/*<ImageItem*/}
+        {/*  src="7.png"*/}
+        {/*  right="18%"*/}
+        {/*  top={"50%"}*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
+        {/*<ImageItem*/}
+        {/*  src="8.png"*/}
+        {/*  right="55%"*/}
+        {/*  top="10%"*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
+        {/*<ImageItem*/}
+        {/*  src="9.png"*/}
+        {/*  right="50%"*/}
+        {/*  top="60%"*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
+        {/*<ImageItem*/}
+        {/*  src="10.png"*/}
+        {/*  right="33%"*/}
+        {/*  top="50%"*/}
+        {/*  scrollTween={scrollTween}*/}
+        {/*/>*/}
 
-        <div className="before:blur-0 before:backdrop-blur-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />
+        {/*<div className="before:blur-0 before:backdrop-blur-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />*/}
         <div
           ref={columnsRef}
           className="flex -rotate-30 scale-[1.4] gap-1 opacity-0 grayscale-100"
@@ -335,8 +383,9 @@ const ImageItem = ({
         top,
         scale,
         clipPath: "inset(0 100% 0 0)",
+        opacity: Math.random() * 0.3 + 0.3,
       }}
-      className="image-item absolute z-[3] overflow-hidden rounded-sm opacity-50 grayscale-100 will-change-transform"
+      className="image-item absolute z-[3] -rotate-30 overflow-hidden rounded-sm grayscale-100 will-change-transform"
     >
       {/*<span className="text-white">{src}</span>*/}
       <img src={`/images/mlyrics/${src}`} alt="" width={width} />
@@ -351,7 +400,7 @@ type ColumnProps = {
 const Column = ({ images }: ColumnProps) => {
   return (
     <div className="relative flex flex-1 flex-col gap-1">
-      <div className="before:absolute before:inset-0 before:z-[1] before:bg-black/80" />
+      <div className="before:absolute before:inset-0 before:z-[1] before:bg-black/85" />
 
       {images.map((src, i) => {
         return (

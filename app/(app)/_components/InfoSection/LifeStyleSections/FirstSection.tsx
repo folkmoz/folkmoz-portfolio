@@ -34,7 +34,7 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
         duration: 1,
       })
         .to(title.current!.querySelector("h3 > span"), {
-          color: "#ac6a6a",
+          // color: "#ac6a6a",
         })
         .to(title.current?.querySelectorAll("i")!, {
           color: "#ff7200",
@@ -63,16 +63,20 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
             trigger: container.current,
             start: "top top",
             end: "bottom center",
-            scrub: 1,
+            scrub: true,
             containerAnimation: scrollTween,
           },
         })
         .to(title.current?.querySelector("h3")!, {
           xPercent: -65,
         })
-        .to(canvas, {
-          zIndex: 0,
-        });
+        .to(
+          canvas,
+          {
+            zIndex: 0,
+          },
+          "-=0.4",
+        );
     },
     { scope: container, dependencies: [scrollTween, mounted] },
   );

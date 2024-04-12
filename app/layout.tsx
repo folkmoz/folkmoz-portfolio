@@ -42,7 +42,7 @@ export default function RootLayout({
         )}
       >
         {children}
-        {/*<Cursor />*/}
+        <Cursor />
       </body>
     </html>
   );

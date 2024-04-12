@@ -74,7 +74,7 @@ const LifeStyle = () => {
         <section
           id="ScrollerWrapper"
           ref={scrollerRef}
-          className="flex h-screen w-[350%] flex-nowrap overflow-hidden"
+          className="flex h-screen w-[320%] flex-nowrap overflow-hidden"
         >
           <FirstSection setPinned={setPinnedCV} scrollTween={scrollTween!} />
           <SecondarySection scrollTween={scrollTween!} />
