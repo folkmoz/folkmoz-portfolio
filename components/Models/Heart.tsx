@@ -1,6 +1,6 @@
 // @ts-nocheck
 import * as THREE from "three";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { gsap } from "gsap";
@@ -22,6 +22,7 @@ type HeartModelProps = JSX.IntrinsicElements["group"] & {
 };
 
 export default function HeartModel(props: HeartModelProps) {
+  const [mounted, setMounted] = useState(false);
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useGLTF("/models/BlackHeart.gltf") as GLTFResult;
 
@@ -31,11 +32,12 @@ export default function HeartModel(props: HeartModelProps) {
     }
   });
   useGSAP(() => {
+    if (mounted) return;
+    if (!props.scrollTween || !group.current) return;
     gsap.registerPlugin(ScrollTrigger);
-    if (!group.current) return;
     const g = group.current;
 
-    if (!props.scrollTween) return;
+    setMounted(true);
 
     // come in
     gsap

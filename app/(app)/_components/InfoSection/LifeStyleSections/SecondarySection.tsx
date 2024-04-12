@@ -210,14 +210,14 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             opacity: 0,
           },
           "-=0.1",
-        )
-        .to(
-          spotlightRef.current,
-          {
-            opacity: 1,
-          },
-          "-=0.9",
         );
+      // .to(
+      //   spotlightRef.current,
+      //   {
+      //     opacity: 1,
+      //   },
+      //   "-=0.9",
+      // );
     },
     { dependencies: [scrollTween] },
   );
@@ -344,10 +344,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           scrollTween={scrollTween}
         />
 
-        <div
-          ref={spotlightRef}
-          className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform"
-        />
+        {/*<div ref={spotlightRef} className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />*/}
         <div
           ref={columnsRef}
           className="flex -rotate-30 scale-[1.4] gap-1 opacity-0 grayscale-100"
@@ -389,7 +386,7 @@ const ImageItem = ({
     gsap.to(ref.current, {
       webkitClipPath: "inset(0% 0% 0% 0%)",
       clipPath: "inset(0% 0% 0% 0%)",
-      duration: 1 + Math.random() * 1.5,
+      duration: 0.5 + Math.random() * 0.5,
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: "#Music",
@@ -411,7 +408,6 @@ const ImageItem = ({
       }}
       className="image-item absolute z-[3] overflow-hidden rounded-sm grayscale-100 will-change-transform"
     >
-      {/*<span className="text-white">{src}</span>*/}
       <img src={`/images/${src}`} alt="" width={width} />
     </div>
   );

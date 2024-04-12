@@ -21,6 +21,8 @@ const Canvas = ({ pinnedCV, scrollTween }: CanvasProps) => {
         inset: 0,
         zIndex: -1,
       }}
+      performance={{ min: 0.5, max: 1 }}
+      // camera={{ position: [0, 0, 10], fov: 70 }}
     >
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />

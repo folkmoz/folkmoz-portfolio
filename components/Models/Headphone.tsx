@@ -32,6 +32,7 @@ type HeadphoneProps = JSX.IntrinsicElements["group"] & {
 };
 
 export default function Headphone(props: HeadphoneProps) {
+  const [mounted, setMounted] = useState(false);
   const [rotation, setRotation] = useState(false);
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useGLTF("/models/Headphones.gltf") as GLTFResult;
@@ -45,23 +46,26 @@ export default function Headphone(props: HeadphoneProps) {
   });
 
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    if (!group.current) return;
+    if (mounted) return;
+    if (!props.scrollTween || !group.current) return;
+
     const g = group.current;
 
     // Scale for the first time
+    gsap.registerPlugin(ScrollTrigger);
     gsap.from(g.position, {
-      y: -2.5,
+      y: -2,
       z: -2,
       scrollTrigger: {
         trigger: "#LifeStyle",
         start: "top 80%",
         end: "bottom 95%",
         markers: false,
-        scrub: 1,
+        scrub: true,
       },
     });
-    if (!props.scrollTween) return;
+
+    setMounted(true);
 
     // Rotate the headphone
     gsap

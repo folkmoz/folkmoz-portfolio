@@ -36,11 +36,7 @@ const HeroSection = () => {
         scale: 0,
       });
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setFinishedLoading(true);
-        },
-      });
+      const tl = gsap.timeline({});
       tl.to(wavingHand.current, {
         scale: 1,
         delay: 0.3,
@@ -60,6 +56,9 @@ const HeroSection = () => {
           y: 0,
           duration: 1,
           ease: "power4.out",
+          onComplete: () => {
+            setFinishedLoading(true);
+          },
         })
         .fromTo(
           document.documentElement,

@@ -14,83 +14,78 @@ const AboutMe = () => {
   const profileRef = useRef<HTMLImageElement | null>(null);
   const svg = useRef<SVGSVGElement | null>(null);
 
-  useGSAP(
-    () => {
-      gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-      const letters = paragraph.current?.querySelectorAll(
-        ".inline-block > span",
-      );
+    const letters = paragraph.current?.querySelectorAll(".inline-block > span");
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top top",
-            end: "70% center",
-            scrub: 1,
-          },
-        })
-        .fromTo(letters!, { opacity: 0.2 }, { opacity: 1, stagger: 0.01 });
-
-      gsap.fromTo(
-        profileRef.current,
-        {
-          y: 200,
-        },
-        {
-          y: 0,
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top 60%",
-            end: "bottom 70%",
-            scrub: 1,
-          },
-        },
-      );
-
-      gsap.from(svg.current, {
-        scale: 0,
-        ease: "none",
+    gsap
+      .timeline({
         scrollTrigger: {
           trigger: container.current,
-          start: "top 40%",
-          end: "center 60%",
+          start: "top top",
+          end: "70% center",
           scrub: 1,
         },
-      });
+      })
+      .fromTo(letters!, { opacity: 0.2 }, { opacity: 1, stagger: 0.01 });
 
-      gsap.to(container.current, {
-        opacity: 0,
+    gsap.fromTo(
+      profileRef.current,
+      {
+        y: 200,
+      },
+      {
+        y: 0,
         scrollTrigger: {
           trigger: container.current,
-          start: "center 5%",
-          end: "bottom 30%",
+          start: "top 60%",
+          end: "bottom 70%",
           scrub: 1,
         },
-      });
+      },
+    );
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: container.current,
-            start: "90% bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        })
-        .fromTo(
-          "#ScrollerContainer",
-          {
-            backgroundColor: "#23211a",
-          },
-          {
-            backgroundColor: "#000",
-          },
-        );
-    },
-    // { scope: container },
-  );
+    gsap.from(svg.current, {
+      scale: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 40%",
+        end: "center 60%",
+        scrub: 1,
+      },
+    });
+
+    gsap.to(container.current, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: container.current,
+        start: "center 5%",
+        end: "bottom 30%",
+        scrub: 1,
+      },
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: container.current,
+          start: "90% bottom",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      })
+      .fromTo(
+        "#ScrollerContainer",
+        {
+          backgroundColor: "#23211a",
+        },
+        {
+          backgroundColor: "#000",
+        },
+      );
+  });
 
   return (
     <section

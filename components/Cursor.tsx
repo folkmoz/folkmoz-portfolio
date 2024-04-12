@@ -40,9 +40,9 @@ const Cursor = () => {
     yTo.current(e.clientY);
 
     gsap.to(cursor.current, {
-      width: isTarget ? 100 : 50,
-      height: isTarget ? 100 : 50,
-      duration: 0.8,
+      width: isTarget ? 100 : 16,
+      height: isTarget ? 100 : 16,
+      duration: 0.2,
       ease: "power4",
     });
 

@@ -42,32 +42,6 @@ const LifeStyle = () => {
     },
   );
 
-  // useGSAP(
-  //   () => {
-  //     gsap.registerPlugin(ScrollTrigger);
-  //
-  //     const containerWidth =
-  //       scrollerRef.current!.offsetWidth - document.documentElement.clientWidth;
-  //
-  //     scrollTween.current = gsap.to(scrollerRef.current, {
-  //       x: () => -containerWidth,
-  //       ease: "none",
-  //
-  //       scrollTrigger: {
-  //         trigger: scrollerRef.current,
-  //         start: "top top",
-  //         end: () => `+=${containerWidth}`,
-  //         scrub: 0.5,
-  //         pin: true,
-  //         invalidateOnRefresh: true,
-  //       },
-  //     });
-  //   },
-  //   {
-  //     scope: scrollerWrapperRef,
-  //   },
-  // );
-
   return (
     <>
       <div ref={scrollerWrapperRef} className="relative">

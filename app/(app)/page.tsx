@@ -5,9 +5,7 @@ import { useEffect } from "react";
 
 export default function Page() {
   useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.2,
-    });
+    const lenis = new Lenis({});
 
     function raf(time: number) {
       lenis.raf(time);
