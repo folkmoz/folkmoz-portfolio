@@ -88,22 +88,22 @@ export default function Headphone(props: HeadphoneProps) {
         scrollTrigger: {
           trigger: "#LifeStyle",
           start: "10% top",
-          end: "bottom top",
+          end: "bottom 20%",
           containerAnimation: props.scrollTween,
           scrub: true,
         },
       })
       .to(g.position, {
         x: 3.5,
-        y: 0.7,
+        y: 1,
         z: 1,
       })
       .to(
         g?.scale,
         {
-          x: 0.7,
-          y: 0.7,
-          z: 0.7,
+          x: 0.5,
+          y: 0.5,
+          z: 0.5,
         },
         0,
       );
@@ -114,7 +114,7 @@ export default function Headphone(props: HeadphoneProps) {
         scrollTrigger: {
           trigger: "#Music",
           start: "35% center",
-          end: "45% center",
+          end: "40% center",
           containerAnimation: props.scrollTween,
           scrub: true,
         },

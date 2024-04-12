@@ -34,6 +34,8 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
   const subTextRef = useRef<HTMLDivElement | null>(null);
   const columnsRef = useRef<HTMLDivElement | null>(null);
   const paragraphRef = useRef<HTMLDivElement | null>(null);
+  const godDanceRef = useRef<HTMLDivElement | null>(null);
+  const spotlightRef = useRef<HTMLDivElement | null>(null);
 
   const { contextSafe } = useGSAP();
 
@@ -97,18 +99,19 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         })
         .fromTo(column1!, { yPercent: 20 }, { yPercent: -40 })
         .fromTo(column2!, { yPercent: -78 }, { yPercent: 50 }, 0)
-        .fromTo(column3!, { yPercent: 40 }, { yPercent: -35 }, 0)
+        .fromTo(column3!, { yPercent: 65 }, { yPercent: -20 }, 0)
         .fromTo(column4!, { yPercent: -120 }, { yPercent: 10 }, 0);
 
       const letters = textRef.current?.querySelectorAll("div > h3 > span")!;
 
+      // title animation
       gsap
         .timeline({
           scrollTrigger: {
             trigger: container.current,
-            start: "left 70%",
+            start: "left 80%",
             end: "bottom 35%",
-            scrub: 1,
+            scrub: true,
             containerAnimation: scrollTween,
           },
         })
@@ -122,13 +125,14 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           },
         );
 
+      // subtitle animation
       gsap
         .timeline({
           scrollTrigger: {
             trigger: container.current,
             start: "5% center",
             end: "bottom 45%",
-            scrub: 1,
+            scrub: true,
             containerAnimation: scrollTween,
           },
         })
@@ -142,13 +146,14 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           },
         );
 
+      // paragraph animation
       gsap
         .timeline({
           scrollTrigger: {
             trigger: container.current,
-            start: "center 70%",
-            end: "bottom top",
-            scrub: 1,
+            start: "center 60%",
+            end: "bottom 30%",
+            scrub: true,
             containerAnimation: scrollTween,
           },
         })
@@ -161,18 +166,6 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             xPercent: -200,
           },
         );
-      //
-      // gsap.to(letters!, {
-      //   scrollTrigger: {
-      //     trigger: container.current,
-      //     start: "top 30%",
-      //     end: "center 60%",
-      //     scrub: true,
-      //     containerAnimation: scrollTween,
-      //   },
-      //   // stagger: 0.1,
-      //   // color: "#7fffd4",
-      // });
 
       gsap.to(container.current, {
         scrollTrigger: {
@@ -184,6 +177,47 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           toggleClass: "overflow-hidden",
         },
       });
+
+      // God dance animation
+      const backdrop = godDanceRef.current!.querySelector("div")!;
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: godDanceRef.current,
+            start: "20% bottom",
+            end: () => `+=${godDanceRef.current!.offsetWidth * 0.83}`,
+            scrub: true,
+            containerAnimation: scrollTween,
+          },
+        })
+        .fromTo(
+          godDanceRef.current,
+          {
+            xPercent: 110,
+          },
+          {
+            xPercent: -80.5,
+          },
+          0,
+        )
+        .to(godDanceRef.current, {
+          ease: "power4.inOut",
+          scale: 1.8,
+        })
+        .to(
+          backdrop,
+          {
+            opacity: 0,
+          },
+          "-=0.1",
+        )
+        .to(
+          spotlightRef.current,
+          {
+            opacity: 1,
+          },
+          "-=0.9",
+        );
     },
     { dependencies: [scrollTween] },
   );
@@ -205,10 +239,9 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
       >
         <div
           ref={textRef}
-          className="absolute top-1/2 left-[10%] z-[5] w-[110%] -translate-y-1/2"
+          className="absolute top-1/2 left-[10%] z-[5] w-[125%] -translate-y-1/2"
         >
           <div className="relative bg-gradient-to-r from-black to-transparent text-8xl font-bold uppercase text-white">
-            {/*<h3>{splitWords('"Without music, life would be a mistake"')}</h3>*/}
             <div className="absolute top-[-70px] left-[-70px] size-[70px]">
               <svg
                 version="1.1"
@@ -249,8 +282,8 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
               </svg>
             </div>
             <h3>
-              Without <i className="text-green-500">music</i>, life would be a{" "}
-              mistake
+              Without <i className="text-green-500">music</i>, life would be a
+              mistake.
             </h3>
           </div>
         </div>
@@ -262,68 +295,59 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             <h3>— Friedrich Nietzsche</h3>
           </div>
         </div>
-
         <div
           ref={paragraphRef}
           className="absolute top-1/2 left-[70%] z-[5] w-full -translate-y-1/2"
         >
           <div className="text-4xl font-medium leading-[1.5] text-white">
             <h3>
-              <span className="ml-24 text-6xl italic">For me</span>
+              <span className="ml-24">For me</span>
               , music is the soundtrack of my life. <br /> I can listen
               endlessly, it&apos;s therapeutic. I even had it playing <br />{" "}
               while building this site. So, life without music is unimaginable.
             </h3>
           </div>
         </div>
+        <div
+          ref={godDanceRef}
+          className="image-item absolute right-0 bottom-[14%] z-[50] overflow-hidden rounded-sm bg-black grayscale-100 will-change-transform"
+        >
+          <div className="absolute inset-0 z-10 bg-black"></div>
+          <img src={"/images/GodDanceStep.gif"} alt="" width={300} />
+        </div>
+        <ImageItem
+          src="TeamDance.gif"
+          right="4%"
+          top="10%"
+          width={250}
+          scrollTween={scrollTween}
+        />
+        <ImageItem
+          src="DrivingMyMusic.gif"
+          right="40%"
+          top="50%"
+          width={300}
+          scrollTween={scrollTween}
+        />
+        <ImageItem
+          src="RickAstleyThrowback.gif"
+          right="40%"
+          top="10%"
+          width={300}
+          scrollTween={scrollTween}
+        />
+        <ImageItem
+          src="KidsDancing.gif"
+          right="20.5%"
+          top="30%"
+          width={300}
+          scrollTween={scrollTween}
+        />
 
-        {/*<ImageItem*/}
-        {/*  src="2.png"*/}
-        {/*  right="22%"*/}
-        {/*  top="10%"*/}
-        {/*  width={300}*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-        {/*<ImageItem src="3.png" right="6%" top={"0"} scrollTween={scrollTween} />*/}
-        {/*<ImageItem*/}
-        {/*  src="4.png"*/}
-        {/*  right="40%"*/}
-        {/*  top={"-5px"}*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-        {/*<ImageItem*/}
-        {/*  src="5.png"*/}
-        {/*  right="2%"*/}
-        {/*  top={"45%"}*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-        {/*<ImageItem src="6.png" right="70%" scrollTween={scrollTween} />*/}
-        {/*<ImageItem*/}
-        {/*  src="7.png"*/}
-        {/*  right="18%"*/}
-        {/*  top={"50%"}*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-        {/*<ImageItem*/}
-        {/*  src="8.png"*/}
-        {/*  right="55%"*/}
-        {/*  top="10%"*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-        {/*<ImageItem*/}
-        {/*  src="9.png"*/}
-        {/*  right="50%"*/}
-        {/*  top="60%"*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-        {/*<ImageItem*/}
-        {/*  src="10.png"*/}
-        {/*  right="33%"*/}
-        {/*  top="50%"*/}
-        {/*  scrollTween={scrollTween}*/}
-        {/*/>*/}
-
-        {/*<div className="before:blur-0 before:backdrop-blur-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />*/}
+        <div
+          ref={spotlightRef}
+          className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform"
+        />
         <div
           ref={columnsRef}
           className="flex -rotate-30 scale-[1.4] gap-1 opacity-0 grayscale-100"
@@ -365,12 +389,13 @@ const ImageItem = ({
     gsap.to(ref.current, {
       webkitClipPath: "inset(0% 0% 0% 0%)",
       clipPath: "inset(0% 0% 0% 0%)",
-      duration: 1,
+      duration: 1 + Math.random() * 1.5,
       ease: "power2.inOut",
       scrollTrigger: {
-        trigger: ref.current,
-        start: "center 90%",
+        trigger: "#Music",
+        start: "bottom 85%",
         containerAnimation: scrollTween,
+        toggleActions: "play none none reverse",
       },
     });
   }, [scrollTween]);
@@ -383,12 +408,11 @@ const ImageItem = ({
         top,
         scale,
         clipPath: "inset(0 100% 0 0)",
-        opacity: Math.random() * 0.3 + 0.3,
       }}
-      className="image-item absolute z-[3] -rotate-30 overflow-hidden rounded-sm grayscale-100 will-change-transform"
+      className="image-item absolute z-[3] overflow-hidden rounded-sm grayscale-100 will-change-transform"
     >
       {/*<span className="text-white">{src}</span>*/}
-      <img src={`/images/mlyrics/${src}`} alt="" width={width} />
+      <img src={`/images/${src}`} alt="" width={width} />
     </div>
   );
 };

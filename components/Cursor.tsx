@@ -33,12 +33,15 @@ const Cursor = () => {
 
     const isTarget = (e.target as HTMLElement).matches("a, button");
 
-    xTo.current(e.clientX + (isTarget ? 0 : 10));
-    yTo.current(e.clientY + (isTarget ? 0 : 20));
+    // xTo.current(e.clientX + (isTarget ? 0 : 10));
+    // yTo.current(e.clientY + (isTarget ? 0 : 20));
+
+    xTo.current(e.clientX);
+    yTo.current(e.clientY);
 
     gsap.to(cursor.current, {
-      width: isTarget ? 100 : 16,
-      height: isTarget ? 100 : 16,
+      width: isTarget ? 100 : 50,
+      height: isTarget ? 100 : 50,
       duration: 0.8,
       ease: "power4",
     });

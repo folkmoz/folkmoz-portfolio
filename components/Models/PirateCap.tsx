@@ -62,7 +62,6 @@ export default function PirateCap(props: PirateCapProps) {
 
     if (!props.scrollTween) return;
 
-    // move out of the screen
     gsap
       .timeline({
         scrollTrigger: {
@@ -74,7 +73,7 @@ export default function PirateCap(props: PirateCapProps) {
         },
       })
       .from(g.position, {
-        y: -2.5,
+        y: -1.5,
       })
       .to(
         leftHand.rotation,
@@ -84,12 +83,13 @@ export default function PirateCap(props: PirateCapProps) {
         "+=2",
       );
 
+    // move to the center
     gsap
       .timeline({
         scrollTrigger: {
           trigger: "#Music",
-          start: "67% bottom",
-          end: "58% 70%",
+          start: "77% bottom",
+          end: "50% center",
           containerAnimation: props.scrollTween,
           scrub: true,
           anticipatePin: 1,
@@ -121,12 +121,13 @@ export default function PirateCap(props: PirateCapProps) {
         "<",
       );
 
+    // move out of the screen
     gsap.to(body.position, {
-      y: -4,
+      y: -2.8,
       scrollTrigger: {
         trigger: "#Music",
-        start: "95% bottom",
-        end: "bottom 65%",
+        start: "96% bottom",
+        end: "bottom 55%",
         containerAnimation: props.scrollTween,
         scrub: true,
         anticipatePin: 1,

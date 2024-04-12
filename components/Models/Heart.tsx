@@ -27,7 +27,7 @@ export default function HeartModel(props: HeartModelProps) {
 
   useFrame(({ clock }) => {
     if (group.current) {
-      group.current.rotation.y = Math.sin(clock.getElapsedTime()) * 1.2;
+      group.current.rotation.y = Math.sin(clock.getElapsedTime());
     }
   });
   useGSAP(() => {
@@ -37,6 +37,7 @@ export default function HeartModel(props: HeartModelProps) {
 
     if (!props.scrollTween) return;
 
+    // come in
     gsap
       .timeline({
         scrollTrigger: {
@@ -52,29 +53,31 @@ export default function HeartModel(props: HeartModelProps) {
         y: -6,
       });
 
+    // move to top
     gsap
       .timeline({
         scrollTrigger: {
           trigger: "#Music",
-          start: "67% bottom",
-          end: "58% 70%",
+          start: "77% bottom",
+          end: "50% center",
           containerAnimation: props.scrollTween,
           scrub: true,
           anticipatePin: 1,
         },
       })
       .to(g.position, {
-        y: 2.8,
+        y: 2.4,
         x: 0.5,
         z: -0.3,
       });
 
+    // move out of the screen
     gsap
       .timeline({
         scrollTrigger: {
           trigger: "#Music",
-          start: "95% bottom",
-          end: "bottom bottom",
+          start: "75% 75%",
+          end: "bottom 85%",
           containerAnimation: props.scrollTween,
           scrub: true,
           anticipatePin: 1,
