@@ -6,7 +6,6 @@ import { useEffect } from "react";
 export default function Page() {
   useEffect(() => {
     const lenis = new Lenis({
-      wheelMultiplier: 1,
       lerp: 0.2,
     });
 
@@ -16,10 +15,6 @@ export default function Page() {
     }
 
     requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
   }, []);
 
   return (

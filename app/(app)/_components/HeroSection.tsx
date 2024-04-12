@@ -60,7 +60,17 @@ const HeroSection = () => {
           y: 0,
           duration: 1,
           ease: "power4.out",
-        });
+        })
+        .fromTo(
+          document.documentElement,
+          {
+            overflow: "hidden",
+          },
+          {
+            overflow: "unset",
+            delay: 1,
+          },
+        );
 
       gsap.from(wavingHand.current.querySelector("div"), {
         opacity: 0,
