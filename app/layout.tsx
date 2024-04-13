@@ -4,6 +4,7 @@ import Cursor from "#/components/Cursor";
 
 import "./globals.css";
 import { cn } from "#/lib/utils";
+import { TailwindIndicator } from "#/components/TailwindIndicator";
 
 const font = localFont({
   src: [
@@ -22,7 +23,7 @@ const font = localFont({
 });
 export const metadata: Metadata = {
   title: {
-    default: "Home",
+    default: "Ayo, I'm Folk!",
     template: `%s | folkmoz`,
   },
   description: "Jirantanapat Kaeosomboon's personal website",
@@ -43,6 +44,7 @@ export default function RootLayout({
       >
         {children}
         <Cursor />
+        <TailwindIndicator />
       </body>
     </html>
   );

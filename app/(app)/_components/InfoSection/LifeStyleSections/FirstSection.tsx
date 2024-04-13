@@ -47,12 +47,8 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
           end: "bottom bottom",
           scrub: true,
         },
-        onComplete: () => {
-          setPinned(true);
-        },
-        onReverseComplete: () => {
-          setPinned(false);
-        },
+        onComplete: () => setPinned(true),
+        onReverseComplete: () => setPinned(false),
       });
 
       const canvas = document.querySelector("#Canvas");
@@ -88,7 +84,7 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
         className="relative flex h-screen w-full items-center justify-center will-change-transform"
         id="LifeStyle"
       >
-        <div className="relative z-5 text-8xl font-bold text-white xl:text-9xl">
+        <div className="relative z-5 text-5xl font-bold leading-[1.5] text-white sm:text-7xl md:text-8xl xl:text-9xl">
           <div ref={title}>
             <h3>
               <span>Know me</span> <i>better</i>

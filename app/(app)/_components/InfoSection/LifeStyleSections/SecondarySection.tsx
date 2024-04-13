@@ -1,4 +1,4 @@
-import { splitWords } from "#/lib/utils";
+import { cn, splitWords } from "#/lib/utils";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -55,9 +55,12 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
 
     const images = container.current!.querySelectorAll(".image-item");
     images.forEach((img, i) => {
+      // random between 30 - 50
+      const random = Math.random() * (50 - 20) + 20;
+
       gsap.to(img, {
-        x: tiltY * 50,
-        y: tiltX * 50,
+        x: tiltY * (i % 2 === 0 ? random : -random),
+        y: tiltX * (i % 2 === 0 ? random : -random),
       });
     });
   });
@@ -184,25 +187,18 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         .timeline({
           scrollTrigger: {
             trigger: godDanceRef.current,
-            start: "20% bottom",
-            end: () => `+=${godDanceRef.current!.offsetWidth * 0.83}`,
+            start: "top bottom",
+            end: () => `+=${godDanceRef.current!.offsetWidth * 0.65}`,
             scrub: true,
             containerAnimation: scrollTween,
           },
         })
-        .fromTo(
-          godDanceRef.current,
-          {
-            xPercent: 110,
-          },
-          {
-            xPercent: -80.5,
-          },
-          0,
-        )
+        .from(godDanceRef.current, {
+          xPercent: 100,
+        })
         .to(godDanceRef.current, {
           ease: "power4.inOut",
-          scale: 1.8,
+          scale: 1,
         })
         .to(
           backdrop,
@@ -239,10 +235,10 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
       >
         <div
           ref={textRef}
-          className="absolute top-1/2 left-[10%] z-[5] w-[125%] -translate-y-1/2"
+          className="absolute top-1/2 left-[10%] z-[5] w-max -translate-y-1/2"
         >
-          <div className="relative bg-gradient-to-r from-black to-transparent text-8xl font-bold uppercase text-white">
-            <div className="absolute top-[-70px] left-[-70px] size-[70px]">
+          <div className="relative bg-gradient-to-r from-black to-transparent text-5xl font-bold uppercase text-white md:text-8xl">
+            <div className="absolute -top-10 -left-10 size-10 sm:top-[-70px] sm:left-[-70px] sm:size-[70px]">
               <svg
                 version="1.1"
                 id="Capa_1"
@@ -289,60 +285,63 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         </div>
         <div
           ref={subTextRef}
-          className="absolute top-2/3 left-[30%] z-[5] -translate-y-1/2"
+          className="absolute top-[60%] left-[30%] z-[5] w-max -translate-y-1/2 md:top-2/3"
         >
-          <div className="bg-[#8e8064] pr-8 text-7xl font-bold uppercase italic leading-[1.5]">
+          <div className="bg-[#8e8064] pr-8 text-4xl font-bold uppercase italic leading-[1.5] md:text-7xl">
             <h3>— Friedrich Nietzsche</h3>
           </div>
         </div>
         <div
           ref={paragraphRef}
-          className="absolute top-1/2 left-[70%] z-[5] w-full -translate-y-1/2"
+          className="absolute top-1/2 left-[70%] z-[5] w-max -translate-y-1/2 md:w-full"
         >
-          <div className="text-4xl font-medium leading-[1.5] text-white">
+          <div className="text-2xl font-medium leading-[1.5] text-white md:text-4xl">
             <h3>
-              <span className="ml-24">For me</span>
+              <span className="ml-12 sm:ml-24">For me</span>
               , music is the soundtrack of my life. <br /> I can listen
               endlessly, it&apos;s therapeutic. I even had it playing <br />{" "}
               while building this site. So, life without music is unimaginable.
             </h3>
           </div>
         </div>
-        <div
-          ref={godDanceRef}
-          className="image-item absolute right-0 bottom-[14%] z-[50] overflow-hidden rounded-sm bg-black grayscale-100 will-change-transform"
-        >
-          <div className="absolute inset-0 z-10 bg-black"></div>
-          <img src={"/images/GodDanceStep.gif"} alt="" width={300} />
+        <div className="absolute top-0 right-0 z-[2] grid h-screen w-screen grid-cols-16 grid-rows-12">
+          <div
+            ref={godDanceRef}
+            style={{ scale: 0.5 }}
+            className="image-item relative col-start-11 col-end-16 row-start-8 row-end-12 rounded-sm rounded-sm bg-black grayscale-100 will-change-transform"
+          >
+            <span className="absolute -top-6 right-0 text-white">Me.jpg </span>
+            <div className="absolute inset-0 z-10 bg-black"></div>
+            <img
+              src={"/images/GodDanceStep.gif"}
+              alt="me dacning..."
+              className="h-full w-full rounded-sm"
+            />
+          </div>
+
+          <ImageItem
+            src="RickAstleyThrowback.gif"
+            className={"col-span-3 col-start-5 row-span-3 row-start-3"}
+            scrollTween={scrollTween}
+          />
+
+          <ImageItem
+            src="TeamDance.gif"
+            className={"col-span-3 col-start-13 row-span-3 row-start-2"}
+            scrollTween={scrollTween}
+          />
+
+          <ImageItem
+            src="KidsDancing.gif"
+            className={"col-span-3 col-start-9 row-span-3 row-start-4"}
+            scrollTween={scrollTween}
+          />
+          <ImageItem
+            src="DrivingMyMusic.gif"
+            className={"col-span-3 col-start-6 row-span-3 row-start-8"}
+            scrollTween={scrollTween}
+          />
         </div>
-        <ImageItem
-          src="TeamDance.gif"
-          right="4%"
-          top="10%"
-          width={250}
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="DrivingMyMusic.gif"
-          right="40%"
-          top="50%"
-          width={300}
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="RickAstleyThrowback.gif"
-          right="40%"
-          top="10%"
-          width={300}
-          scrollTween={scrollTween}
-        />
-        <ImageItem
-          src="KidsDancing.gif"
-          right="20.5%"
-          top="30%"
-          width={300}
-          scrollTween={scrollTween}
-        />
 
         {/*<div ref={spotlightRef} className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />*/}
         <div
@@ -366,6 +365,7 @@ type ImageItemProps = {
   scale?: number;
   width?: number;
   scrollTween?: gsap.core.Tween;
+  className?: string;
 };
 
 const ImageItem = ({
@@ -375,6 +375,7 @@ const ImageItem = ({
   scale = 1,
   width = 200,
   scrollTween,
+  className,
 }: ImageItemProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -390,7 +391,7 @@ const ImageItem = ({
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: "#Music",
-        start: "bottom 85%",
+        start: "bottom 84.3%",
         containerAnimation: scrollTween,
         toggleActions: "play none none reverse",
       },
@@ -406,9 +407,12 @@ const ImageItem = ({
         scale,
         clipPath: "inset(0 100% 0 0)",
       }}
-      className="image-item absolute z-[3] overflow-hidden rounded-sm grayscale-100 will-change-transform"
+      className={cn(
+        "image-item overflow-hidden rounded-sm grayscale-100 will-change-transform",
+        className,
+      )}
     >
-      <img src={`/images/${src}`} alt="" width={width} />
+      <img src={`/images/${src}`} className="h-full w-full" />
     </div>
   );
 };

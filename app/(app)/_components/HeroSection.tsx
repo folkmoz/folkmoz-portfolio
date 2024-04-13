@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRightIcon } from "lucide-react";
+import Lenis from "@studio-freight/lenis";
 
 const HeroSection = () => {
   const [finishedLoading, setFinishedLoading] = useState(false);
@@ -18,6 +19,17 @@ const HeroSection = () => {
     gsap.to(wavingHand.current, { rotate: -15, duration: 0.2 });
   const waveUp = () =>
     gsap.to(wavingHand.current, { rotate: 15, duration: 0.2 });
+
+  const initSmoothScroll = () => {
+    const lenis = new Lenis({});
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  };
 
   useGSAP(
     () => {
@@ -67,7 +79,10 @@ const HeroSection = () => {
           },
           {
             overflow: "unset",
-            delay: 1,
+            delay: 0.5,
+            onStart: () => {
+              initSmoothScroll();
+            },
           },
         );
 
