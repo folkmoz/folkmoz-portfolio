@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
+  const [text, setText] = useState("Click");
   const xTo = useRef<gsap.QuickToFunc>();
   const yTo = useRef<gsap.QuickToFunc>();
   const cursor = useRef<HTMLDivElement | null>(null);
@@ -18,11 +19,11 @@ const Cursor = () => {
 
       xTo.current = gsap.quickTo(cursor.current, "x", {
         duration: 0.8,
-        ease: "power3",
+        ease: "power2",
       });
       yTo.current = gsap.quickTo(cursor.current, "y", {
         duration: 0.8,
-        ease: "power3",
+        ease: "power2",
       });
     },
     { scope: cursor },
@@ -31,7 +32,12 @@ const Cursor = () => {
   const moveCursor = contextSafe((e: MouseEvent) => {
     if (!xTo.current || !yTo.current) return;
 
-    const isTarget = (e.target as HTMLElement).matches("a, button");
+    const isLink = (e.target as HTMLElement).matches("a, button");
+    //check if target has a parent with a data-cursor attribute
+    const isTarget =
+      (e.target as HTMLElement).closest("[data-cursor=link]") !== null;
+    if (isTarget) setText("Visit");
+    else setText("Click");
 
     // xTo.current(e.clientX + (isTarget ? 0 : 10));
     // yTo.current(e.clientY + (isTarget ? 0 : 20));
@@ -43,7 +49,7 @@ const Cursor = () => {
       width: isTarget ? 100 : 16,
       height: isTarget ? 100 : 16,
       duration: 0.2,
-      ease: "power4",
+      ease: "circ.out",
     });
 
     if (tooltip.current) {
@@ -87,11 +93,11 @@ const Cursor = () => {
   return (
     <div
       ref={cursor}
-      className="bg-primary pointer-events-none fixed top-0 left-0 z-[9999] flex size-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full mix-blend-difference"
+      className="pointer-events-none fixed top-0 left-0 z-[9999] flex size-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-white opacity-0"
     >
       {isHovering ? (
-        <span ref={tooltip} className="text-primary-foreground opacity-0">
-          Click
+        <span ref={tooltip} className="text-brown opacity-0">
+          {text}
         </span>
       ) : null}
     </div>

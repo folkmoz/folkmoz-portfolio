@@ -54,6 +54,7 @@ const LifeStyle = () => {
           <SecondarySection scrollTween={scrollTween!} />
           <ThirdSection scrollTween={scrollTween!} />
         </section>
+
         <Canvas pinnedCV={pinnedCV} scrollTween={scrollTween!} />
       </div>
     </>

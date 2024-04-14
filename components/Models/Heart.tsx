@@ -69,7 +69,7 @@ export default function HeartModel(props: HeartModelProps) {
       })
       .to(g.position, {
         y: 2.4,
-        x: 0.5,
+        x: 0.15,
         z: -0.3,
       });
 

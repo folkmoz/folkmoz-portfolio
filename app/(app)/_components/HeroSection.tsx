@@ -54,6 +54,7 @@ const HeroSection = () => {
         delay: 0.3,
         duration: 0.5,
         ease: "back.out(1.4)",
+        onStart: () => initSmoothScroll(),
       })
         .add(waveDown())
         .add(waveUp())
@@ -71,20 +72,20 @@ const HeroSection = () => {
           onComplete: () => {
             setFinishedLoading(true);
           },
-        })
-        .fromTo(
-          document.documentElement,
-          {
-            overflow: "hidden",
-          },
-          {
-            overflow: "unset",
-            delay: 0.5,
-            onStart: () => {
-              initSmoothScroll();
-            },
-          },
-        );
+        });
+      // .fromTo(
+      //   document.documentElement,
+      //   {
+      //     overflow: "hidden",
+      //   },
+      //   {
+      //     overflow: "unset",
+      //     delay: 0.5,
+      //     onStart: () => {
+      //       initSmoothScroll();
+      //     },
+      //   },
+      // );
 
       gsap.from(wavingHand.current.querySelector("div"), {
         opacity: 0,
@@ -123,12 +124,12 @@ const HeroSection = () => {
 
       gsap.to([titleRef.current, scrollRef.current], {
         opacity: 0,
-        scale: 0.8,
-        y: -500,
+        // scale: 0.8,
+        yPercent: -50,
         scrollTrigger: {
           trigger: container.current,
           start: "top top",
-          end: "bottom 40%",
+          end: "bottom 55%",
           scrub: 1,
         },
       });
@@ -177,7 +178,6 @@ const HeroSection = () => {
           <ArrowRightIcon className="ml-2 h-6 w-6" />
         </span>
       </div>
-      {/*<div className="h-screen"></div>*/}
     </section>
   );
 };

@@ -55,7 +55,6 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
 
     const images = container.current!.querySelectorAll(".image-item");
     images.forEach((img, i) => {
-      // random between 30 - 50
       const random = Math.random() * (50 - 20) + 20;
 
       gsap.to(img, {
@@ -177,12 +176,13 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           end: "bottom top",
           scrub: true,
           containerAnimation: scrollTween,
-          toggleClass: "overflow-hidden",
+          // toggleClass: "overflow-hidden",
         },
       });
 
       // God dance animation
       const backdrop = godDanceRef.current!.querySelector("div")!;
+      const label = godDanceRef.current!.querySelector("span")!;
       gsap
         .timeline({
           scrollTrigger: {
@@ -206,14 +206,21 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             opacity: 0,
           },
           "-=0.1",
+        )
+        .to(
+          label,
+          {
+            opacity: 1,
+          },
+          "<",
+        )
+        .to(
+          spotlightRef.current,
+          {
+            opacity: 1,
+          },
+          "-=0.9",
         );
-      // .to(
-      //   spotlightRef.current,
-      //   {
-      //     opacity: 1,
-      //   },
-      //   "-=0.9",
-      // );
     },
     { dependencies: [scrollTween] },
   );
@@ -304,13 +311,15 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             </h3>
           </div>
         </div>
-        <div className="absolute top-0 right-0 z-[2] grid h-screen w-screen grid-cols-16 grid-rows-12">
+        <div className="absolute top-0 right-0 z-[20] grid h-screen w-screen grid-cols-16 grid-rows-12">
           <div
             ref={godDanceRef}
             style={{ scale: 0.5 }}
             className="image-item relative col-start-11 col-end-16 row-start-8 row-end-12 rounded-sm rounded-sm bg-black grayscale-100 will-change-transform"
           >
-            <span className="absolute -top-6 right-0 text-white">Me.jpg </span>
+            <span className="absolute -top-6 right-0 text-white opacity-0">
+              Me.jpg{" "}
+            </span>
             <div className="absolute inset-0 z-10 bg-black"></div>
             <img
               src={"/images/GodDanceStep.gif"}
@@ -318,7 +327,9 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
               className="h-full w-full rounded-sm"
             />
           </div>
+        </div>
 
+        <div className="absolute top-0 right-0 z-[5] grid h-screen w-screen grid-cols-16 grid-rows-12">
           <ImageItem
             src="RickAstleyThrowback.gif"
             className={"col-span-3 col-start-5 row-span-3 row-start-3"}
@@ -343,7 +354,10 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           />
         </div>
 
-        {/*<div ref={spotlightRef} className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />*/}
+        <div
+          ref={spotlightRef}
+          className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform"
+        />
         <div
           ref={columnsRef}
           className="flex -rotate-30 scale-[1.4] gap-1 opacity-0 grayscale-100"
