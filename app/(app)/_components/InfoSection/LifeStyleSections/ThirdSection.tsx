@@ -79,12 +79,16 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
       >
         <div>
           <div>
-            <h3 className="-ml-1.5 text-8xl italic">Pop</h3>
-            <p className="text-5xl">is the most genre I listen to.</p>
-            <p className="text-secondary mt-5 text-2xl">
-              Actually, it’s depends on the mood but the most is I like to{" "}
-              <br />
-              listen to kind of love songs the most because I enjoy{" "}
+            <h3 className="-ml-1.5 text-5xl md:text-8xl">Pop</h3>
+            <p className="text-3xl md:text-5xl">
+              is the most genre I listen to.
+            </p>
+            <p className="text-secondary mt-5 text-2xl md:max-w-[40vw]">
+              Personally, I really enjoy listening to pop love songs,
+              There&apos;`s something about their upbeat melodies and romantic
+              lyrics that just puts me in a great mood. The feel-good vibes from
+              these songs instantly brighten my day and bring a smile to my
+              face.
             </p>
           </div>
           <div className="mt-24">
@@ -284,6 +288,11 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 </div>
               </div>
             </a>
+          </div>
+        </div>
+        <div className="pointer-events-none absolute inset-0">
+          <div className="relative flex h-full items-center justify-end pr-20">
+            <img src="/images/mlyrics/3.png" alt="" width={300} />
           </div>
         </div>
       </div>

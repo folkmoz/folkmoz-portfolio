@@ -1,8 +1,11 @@
+// @ts-nocheck
 import { Canvas as OriCanvas } from "@react-three/fiber";
 import Headphone from "#/components/Models/Headphone";
 import HeartModel from "#/components/Models/Heart";
 import { Environment, OrbitControls } from "@react-three/drei";
 import PirateCap from "#/components/Models/PirateCap";
+import Renderer from "three/examples/jsm/renderers/common/Renderer";
+import WebGL from "three/examples/jsm/capabilities/WebGL";
 
 type CanvasProps = {
   pinnedCV: boolean;
@@ -27,7 +30,6 @@ const Canvas = ({ pinnedCV, scrollTween }: CanvasProps) => {
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       <Headphone scrollTween={scrollTween} />
-      {/*<Stone />*/}
       <PirateCap scrollTween={scrollTween} />
       <HeartModel scrollTween={scrollTween} />
       {/*<OrbitControls  />*/}

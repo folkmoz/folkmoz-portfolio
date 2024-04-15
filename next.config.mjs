@@ -8,10 +8,10 @@ const nextConfig = {
   },
   headers() {
     return [
-      // {
-      //   source: '/(.*)',
-      //   headers: securityHeaders,
-      // },
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
       {
         source: '/models/(.*)',
         headers: [

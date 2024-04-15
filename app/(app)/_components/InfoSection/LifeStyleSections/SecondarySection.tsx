@@ -324,7 +324,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             <img
               src={"/images/GodDanceStep.gif"}
               alt="me dacning..."
-              className="h-full w-full rounded-sm"
+              className="h-full w-full rounded-sm object-cover"
             />
           </div>
         </div>
@@ -426,7 +426,7 @@ const ImageItem = ({
         className,
       )}
     >
-      <img src={`/images/${src}`} className="h-full w-full" />
+      <img src={`/images/${src}`} className="h-full w-full object-cover" />
     </div>
   );
 };

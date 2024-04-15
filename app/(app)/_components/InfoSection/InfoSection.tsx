@@ -1,5 +1,6 @@
 import AboutMe from "./AboutMe";
 import LifeStyle from "#/app/(app)/_components/InfoSection/LifeStyle";
+import ContactSection from "#/app/(app)/_components/Contact";
 
 const InfoSection = () => {
   return (
@@ -10,8 +11,8 @@ const InfoSection = () => {
       >
         <AboutMe />
         <LifeStyle />
+        <ContactSection />
       </div>
-      <div className="h-screen"></div>
     </>
   );
 };

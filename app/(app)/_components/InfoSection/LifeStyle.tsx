@@ -13,7 +13,6 @@ const LifeStyle = () => {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
 
   const [pinnedCV, setPinnedCV] = useState(false);
-  // const scrollTween = useRef<gsap.core.Tween>();
 
   useGSAP(
     () => {
@@ -38,7 +37,6 @@ const LifeStyle = () => {
     },
     {
       scope: scrollerWrapperRef,
-      dependencies: [],
     },
   );
 
