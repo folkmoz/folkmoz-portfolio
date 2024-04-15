@@ -3,8 +3,13 @@
 import HeroSection from "./HeroSection";
 import Header from "./Header";
 import InfoSection from "#/app/(app)/_components/InfoSection/InfoSection";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
   return (
     <>
       <Header />
