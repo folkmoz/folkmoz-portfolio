@@ -37,6 +37,12 @@ export default function HeartModel(props: HeartModelProps) {
     gsap.registerPlugin(ScrollTrigger);
     const g = group.current;
 
+    const isMobile = window.innerWidth < 480;
+    if (isMobile) {
+      gsap.set(g.position, { y: -6 });
+      return;
+    }
+
     setMounted(true);
 
     // come in

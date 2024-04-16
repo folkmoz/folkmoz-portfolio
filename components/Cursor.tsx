@@ -49,8 +49,8 @@ const Cursor = () => {
       mixBlendMode: isTarget ? "normal" : "difference",
       width: isTarget ? 120 : 20,
       height: isTarget ? 120 : 20,
-      duration: 0.2,
-      ease: "circ.out",
+      duration: 0.4,
+      ease: "power1",
     });
 
     if (tooltip.current) {

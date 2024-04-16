@@ -78,18 +78,18 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
       <div
         id="ThirdSection"
         ref={container}
-        className="relative flex h-screen w-full flex-col py-20 pr-4 pl-14 text-white md:pl-[10vw]"
+        className="relative flex h-screen w-full flex-col pt-16 pr-[36px] pl-[120px] text-white md:pt-10 md:pr-8 md:pl-24 xl:py-20 xl:pl-[10vw]"
       >
-        <div className="flex flex-col md:pl-[8vw]">
-          <div className="flex flex-col-reverse md:flex-row md:gap-10 md:pr-[15vw] 2xl:items-end">
+        <div className="flex flex-col xl:pl-[8vw]">
+          <div className="flex flex-col-reverse justify-between gap-8 md:flex-row xl:pr-[10vw] 2xl:items-end 2xl:gap-10">
             <div className="md:w-1/2">
-              <h3 className="-ml-1.5 text-5xl font-bold md:text-6xl 2xl:text-8xl">
+              <h3 className="text-4xl font-bold md:-ml-1.5 md:text-6xl 2xl:text-8xl">
                 Pop
               </h3>
               <p className="text-3xl md:text-4xl 2xl:text-5xl">
                 is the most genre I listen to.
               </p>
-              <p className="text-secondary mt-5 text-2xl md:max-w-[40vw]">
+              <p className="text-secondary mt-2  md:mt-5 md:text-2xl xl:max-w-[40vw]">
                 Personally, I really enjoy listening to pop love songs,
                 There&apos;s something about their upbeat melodies and romantic
                 lyrics that just puts me in a great mood. The feel-good vibes
@@ -97,17 +97,17 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 my face.
               </p>
             </div>
-            <div className="">
+            <div>
               <Image
                 src={MusicQuote}
                 width={500}
                 alt={"Music Quote"}
-                className="rounded-xl object-cover"
+                className="h-[150px] rounded-xl object-cover md:h-full"
               />
             </div>
           </div>
 
-          <div className="mt-14 flex items-center sm:mt-6 md:mt-16 md:justify-between md:gap-12 md:pr-[15vw]">
+          <div className="mt-8 flex items-center sm:mt-6 md:justify-between md:gap-12 xl:mt-14 xl:pr-[10vw] 2xl:mt-16">
             <div className="hidden w-full md:block">
               <Image
                 src={BeMinePablo}
@@ -115,27 +115,27 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 className="h-full w-full rounded-xl object-cover"
               />
             </div>
-            <div className="md:w-2/3">
-              <h3 className="text-4xl font-medium md:text-5xl 2xl:text-6xl">
+            <div className="w-full md:w-2/3">
+              <h3 className="text-4xl font-medium 2xl:text-6xl">
                 My treasure trove
               </h3>
               <a
                 href="https://open.spotify.com/user/31oy7kbqkeu3kxqa4rzdk5vfu3si"
                 target="_blank"
-                className="block max-w-[420px]"
+                className="block 2xl:max-w-[420px]"
                 data-cursor={"link"}
               >
                 <div
                   onMouseMove={(e) => onMouseMove(e, "spotify")}
                   onMouseLeave={() => onMouseLeave("spotify")}
-                  className="bg-brown mt-5 flex items-center justify-between rounded-xl p-6 px-5 sm:mt-8"
+                  className="bg-brown group mt-5 flex items-center justify-between rounded-xl p-6 px-5 sm:mt-8"
                 >
                   <div className="flex gap-4">
                     <svg
                       viewBox="0 0 62 62"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="size-[64px]"
+                      className="size-[56px] transition-transform duration-300 ease-in-out group-hover:scale-[1.1] md:size-[64px]"
                     >
                       <rect
                         x="-0.00976562"
@@ -152,7 +152,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                     </svg>
 
                     <div>
-                      <h4 className="text-2xl">Me on Spotify</h4>
+                      <h4 className="text-xl md:text-2xl">Me on Spotify</h4>
                       <div className="text-secondary mt-1">
                         10 public playlists
                       </div>
@@ -164,7 +164,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                     data-link={"spotify"}
                   >
                     <svg
-                      className="size-[24px]"
+                      className="size-6 md:size-[24px]"
                       viewBox="0 0 26 23"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -181,17 +181,17 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
               <a
                 href="https://music.apple.com/profile/folkmoz"
                 target="_blank"
-                className="block max-w-[420px]"
+                className="block w-full 2xl:max-w-[420px]"
                 data-cursor={"link"}
               >
                 <div
                   onMouseMove={(e) => onMouseMove(e, "apple")}
                   onMouseLeave={() => onMouseLeave("apple")}
-                  className="bg-brown mt-6 flex items-center justify-between rounded-xl p-6 px-5"
+                  className="bg-brown group mt-6 flex items-center justify-between rounded-xl p-6 px-5"
                 >
                   <div className="flex gap-4">
                     <svg
-                      className="size-[64px]"
+                      className="size-[56px] transition-transform duration-300 ease-in-out group-hover:scale-[1.1] md:size-[64px]"
                       viewBox="0 0 61 62"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +304,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                     </svg>
 
                     <div>
-                      <h4 className="text-2xl">Me on Apple Music</h4>
+                      <h4 className="text-xl md:text-2xl">Me on Apple Music</h4>
                       <div className="text-secondary mt-1">
                         4 public playlists
                       </div>
@@ -316,7 +316,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                     data-link={"apple"}
                   >
                     <svg
-                      className="size-[24px]"
+                      className="size-[20px] md:size-[24px]"
                       viewBox="0 0 26 23"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

@@ -7,16 +7,16 @@ const ContactSection = () => {
   return (
     <>
       <section
-        className="h-screen w-full bg-white py-[5vh] pt-20 px-10"
+        className="h-screen w-full bg-white pt-20 px-4 md:py-[5vh] md:px-10"
         id="Contacts"
       >
-        <div className="flex h-full flex-col">
+        <div className="flex h-full flex-col ">
           <div className="text-5xl font-bold md:text-8xl 2xl:text-9xl">
             <h3 className="text-brown">
-              <AnimatedText words={["Contacts."]} />
+              <AnimatedText words={["Contacts."]} atViewport="start 80%" />
             </h3>
           </div>
-          <div className="divide-primary border-primary mt-8 flex flex-1 flex-col divide-y-2 border-y-2">
+          <div className="divide-primary border-primary mt-8 flex flex-col divide-y-2 border-y-2 md:flex-1">
             <ContactItem
               title={"Instagram"}
               account={"folk_moz"}
@@ -103,7 +103,7 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
         className="h-full py-10 md:py-0"
       >
         <div className="flex h-full items-center justify-between px-4">
-          <div className="text-secondary flex items-end text-3xl md:text-5xl xl:text-[6vw]">
+          <div className="text-secondary flex items-end text-4xl sm:text-5xl md:text-8xl xl:text-[6vw]">
             <h4>{title}</h4>
             {subtitle && (
               <span className="hidden text-2xl italic sm:block md:text-4xl">
@@ -112,7 +112,7 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
             )}
           </div>
 
-          <div className="mr-12">
+          <div className="mr-4 md:mr-12">
             <svg
               className="size-8 md:size-[64px]"
               viewBox="0 0 26 23"
@@ -136,11 +136,13 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
           className="bg-brown absolute inset-0 flex items-center gap-20 text-2xl font-bold text-white transition-all duration-300 md:text-4xl xl:text-8xl"
         >
           <div className="absolute inset-0 z-[5] flex h-full items-center justify-between">
-            <div className="from-brown flex h-full h-full w-max items-center bg-gradient-to-r from-80% to-transparent pr-44 pl-4 font-normal text-white">
-              <h4 className="text-3xl md:text-5xl xl:text-[6vw]">{title}</h4>
+            <div className="from-brown flex h-full h-full w-max items-center bg-gradient-to-r from-80% to-transparent pr-20 pl-4 font-normal text-white md:pr-44">
+              <h4 className="text-4xl sm:text-5xl md:text-8xl xl:text-[6vw]">
+                {title}
+              </h4>
             </div>
 
-            <div className="from-brown flex h-full items-center bg-gradient-to-l from-80% to-transparent px-16">
+            <div className="from-brown flex h-full items-center bg-gradient-to-l from-80% to-transparent px-8 md:px-16">
               <div>
                 <svg
                   className="size-8 md:size-[64px]"

@@ -20,6 +20,7 @@ import image14 from "#/public/images/mtns/14.png";
 import image15 from "#/public/images/mtns/15.png";
 import image16 from "#/public/images/mtns/16.png";
 import Image, { StaticImageData } from "next/image";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 const images = [
   image1,
@@ -85,6 +86,8 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
     () => {
       if (!scrollTween) return;
       gsap.registerPlugin(ScrollTrigger);
+
+      const isMobile = window.innerWidth < 480;
 
       gsap.to(columnsRef.current, {
         opacity: 1,
@@ -205,13 +208,14 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           scrollTrigger: {
             trigger: godDanceRef.current,
             start: "top bottom",
-            end: () => `+=${godDanceRef.current!.offsetWidth * 0.65}`,
+            end: () =>
+              `+=${godDanceRef.current!.offsetWidth * (isMobile ? 0.3 : 0.65)}`,
             scrub: true,
             containerAnimation: scrollTween,
           },
         })
         .from(godDanceRef.current, {
-          xPercent: 100,
+          xPercent: isMobile ? 65 : 100,
         })
         .to(godDanceRef.current, {
           ease: "power4.inOut",
@@ -255,7 +259,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
       <div
         id="Music"
         ref={container}
-        className="relative flex h-full w-[120%] items-center justify-center bg-black will-change-transform"
+        className="relative flex h-full w-[200%] items-center justify-center bg-black will-change-transform md:w-[120%]"
       >
         <div
           ref={textRef}
@@ -280,13 +284,9 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
                   strokeLinejoin="round"
                 ></g>
                 <g id="SVGRepo_iconCarrier">
-                  {" "}
                   <g>
-                    {" "}
                     <g id="right_x5F_quote">
-                      {" "}
                       <g>
-                        {" "}
                         <path
                           style={{ fill: "#ffffff" }}
                           d="M0,4v12h8c0,4.41-3.586,8-8,8v4c6.617,0,12-5.383,12-12V4H0z"
@@ -294,10 +294,10 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
                         <path
                           style={{ fill: "#ffffff" }}
                           d="M20,4v12h8c0,4.41-3.586,8-8,8v4c6.617,0,12-5.383,12-12V4H20z"
-                        ></path>{" "}
-                      </g>{" "}
-                    </g>{" "}
-                  </g>{" "}
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
                 </g>
               </svg>
             </div>
@@ -317,14 +317,17 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         </div>
         <div
           ref={paragraphRef}
-          className="absolute top-1/2 left-[70%] z-[5] w-max -translate-y-1/2 md:w-full"
+          className="absolute top-1/2 left-[70%] z-[5] w-full max-w-lg -translate-y-1/2 md:w-max md:max-w-full"
         >
           <div className="text-2xl font-medium leading-[1.5] text-white md:text-4xl">
             <h3>
-              <span className="ml-12 sm:ml-24">For me</span>
-              , music is the soundtrack of my life. <br /> I can listen
-              endlessly, it&apos;s therapeutic. I even had it playing <br />{" "}
-              while building this site. So, life without music is unimaginable.
+              <span className="ml-12 sm:ml-24">For me</span>, music is the
+              soundtrack of my life. I can listen{" "}
+              <br className="hidden md:block" />
+              endlessly, it&apos;s therapeutic. I even had it playing while
+              building <br className="hidden md:block" /> this site. So, life
+              without music is{" "}
+              <span className="italic underline">unimaginable</span>.
             </h3>
           </div>
         </div>
@@ -332,7 +335,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           <div
             ref={godDanceRef}
             style={{ scale: 0.5 }}
-            className="image-item relative col-start-11 col-end-16 row-start-8 row-end-12 rounded-sm rounded-sm bg-black grayscale-100 will-change-transform"
+            className="image-item relative col-start-5 col-end-17 row-start-5 row-end-8 rounded-sm rounded-sm  bg-black grayscale-100 will-change-transform md:col-start-11 md:col-end-16 md:row-start-8 md:row-end-12"
           >
             <span className="absolute -top-6 right-0 text-white opacity-0">
               Me.jpg{" "}
@@ -435,7 +438,7 @@ const ImageItem = ({
         clipPath: "inset(0 100% 0 0)",
       }}
       className={cn(
-        "image-item overflow-hidden rounded-sm grayscale-100 will-change-transform",
+        "image-item hidden overflow-hidden rounded-sm grayscale-100 will-change-transform md:block",
         className,
       )}
     >

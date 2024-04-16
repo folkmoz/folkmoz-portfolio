@@ -7,6 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -50,6 +51,19 @@ export default function Headphone(props: HeadphoneProps) {
     if (!props.scrollTween || !group.current) return;
 
     const g = group.current;
+
+    const isMobile = window.innerWidth < 480;
+    if (isMobile) {
+      gsap.set(g.scale, {
+        x: 0.5,
+        y: 0.5,
+        z: 0.5,
+      });
+
+      gsap.set(g.position, {
+        y: -0.5,
+      });
+    }
 
     // Scale for the first time
     gsap.registerPlugin(ScrollTrigger);
@@ -98,16 +112,16 @@ export default function Headphone(props: HeadphoneProps) {
         },
       })
       .to(g.position, {
-        x: 3.5,
-        y: 1,
+        x: isMobile ? 0 : 3.5,
+        y: isMobile ? 1.3 : 1,
         z: 1,
       })
       .to(
         g?.scale,
         {
-          x: 0.5,
-          y: 0.5,
-          z: 0.5,
+          x: isMobile ? 0.4 : 0.5,
+          y: isMobile ? 0.4 : 0.5,
+          z: isMobile ? 0.4 : 0.5,
         },
         0,
       );
@@ -118,7 +132,7 @@ export default function Headphone(props: HeadphoneProps) {
         scrollTrigger: {
           trigger: "#Music",
           start: "35% center",
-          end: "40% center",
+          end: isMobile ? "70% 30%" : "40% center",
           containerAnimation: props.scrollTween,
           scrub: true,
         },

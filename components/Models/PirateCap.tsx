@@ -11,6 +11,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useGSAP } from "@gsap/react";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -56,6 +57,9 @@ export default function PirateCap(props: PirateCapProps) {
   useGSAP(() => {
     if (mounted) return;
     if (!props.scrollTween || !group.current) return;
+
+    const isMobile = window.innerWidth < 480;
+    if (isMobile) return;
 
     setMounted(true);
     gsap.registerPlugin(ScrollTrigger);

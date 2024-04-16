@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 type FirstSectionProps = {
   setPinned: (value: boolean) => void;
@@ -17,6 +18,8 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
     () => {
       if (!scrollTween) return;
       gsap.registerPlugin(ScrollTrigger);
+
+      const isMobile = window.innerWidth < 480;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -71,7 +74,7 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
           {
             zIndex: 0,
           },
-          "-=0.4",
+          isMobile ? "-=1" : "-=0.4",
         );
     },
     { scope: container, dependencies: [scrollTween, mounted] },
@@ -81,7 +84,7 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
     <>
       <div
         ref={container}
-        className="relative flex h-screen w-full items-center justify-center will-change-transform"
+        className="relative flex h-screen w-full min-w-[100vw] items-center justify-center will-change-transform"
         id="LifeStyle"
       >
         <div className="relative z-5 text-5xl font-bold leading-[1.5] text-white sm:text-7xl md:text-8xl xl:text-9xl">

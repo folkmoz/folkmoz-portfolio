@@ -15,7 +15,7 @@ type CanvasProps = {
 const Canvas = ({ pinnedCV, scrollTween }: CanvasProps) => {
   return (
     <OriCanvas
-      className="hidden md:block"
+      // className="hidden md:block"
       id={"Canvas"}
       style={{
         pointerEvents: "none",

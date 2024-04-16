@@ -40,15 +40,15 @@ const ExperienceSection = () => {
 
   return (
     <div ref={container} className="relative flex h-full w-full text-white">
-      <div className="flex h-full w-full flex-col gap-8 pb-20 md:gap-56 md:pt-[20vh] md:px-36 md:pb-[40vw] 2xl:px-[10vw]">
-        <div className="flex flex-col justify-between  md:flex-row">
+      <div className="flex h-full w-full flex-col gap-32 pt-16 px-8 pb-[50vh] md:gap-56 md:pt-[20vh] md:px-36 md:pb-[40vw] 2xl:px-[10vw]">
+        <div className="flex flex-col justify-between gap-6 xl:flex-row">
           <div className="text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl">
             <h4 className="font-bold leading-[1.2]">
-              <AnimatedText words={["Hobby."]} />
+              <AnimatedText words={["Hobby."]} atViewport="top 90%" />
             </h4>
           </div>
-          <div className="md:w-1/2">
-            <ul className="list-inside list-disc text-2xl md:mt-8">
+          <div className="w-full xl:w-1/2">
+            <ul className="list-inside list-disc text-lg md:mt-8 md:text-2xl">
               <li>
                 <span>Listening to music</span>
               </li>
@@ -70,20 +70,20 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between md:flex-row">
+        <div className="flex flex-col justify-between gap-6 xl:flex-row ">
           <div className="text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl">
             <h4 className="font-bold leading-[1.2]">
-              <AnimatedText words={["Experience."]} />
+              <AnimatedText words={["Experience."]} atViewport="top 90%" />
             </h4>
           </div>
-          <div className="flex flex-col items-start gap-8 md:mt-8 md:w-1/2 md:flex-row md:gap-16">
+          <div className="flex flex-col items-start gap-8 md:mt-8 md:flex-row xl:w-1/2 xl:gap-16">
             <div>
-              <div className="text-3xl">
+              <div className="text-2xl md:text-3xl">
                 <h5>
                   <span>Web development</span>
                 </h5>
               </div>
-              <ul className="list-inside list-disc text-2xl text-gray-300">
+              <ul className="mt-2 list-inside list-disc text-lg text-gray-300 md:text-2xl">
                 <li>
                   <span>React</span>
                 </li>
@@ -111,12 +111,12 @@ const ExperienceSection = () => {
             </div>
 
             <div>
-              <div className="text-3xl ">
+              <div className="text-2xl md:text-3xl">
                 <h5>
                   <span>DevOps</span>
                 </h5>
               </div>
-              <ul className="list-inside list-disc text-xl">
+              <ul className="mt-2 list-inside list-disc text-lg md:text-2xl">
                 <li>
                   <span>Git</span>
                 </li>
@@ -142,14 +142,14 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between  md:flex-row">
+        <div className="flex flex-col justify-between  gap-6 xl:flex-row ">
           <div className="text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl">
             <h4 className="font-bold leading-[1.2]">
-              <AnimatedText words={["Tools I use."]} />
+              <AnimatedText words={["Tools I use."]} atViewport="top 90%" />
             </h4>
           </div>
-          <div className="md:w-1/2">
-            <ul className="list-inside list-disc text-2xl md:mt-8">
+          <div className="xl:w-1/2">
+            <ul className="list-inside list-disc text-lg md:mt-8 md:text-2xl">
               <li>
                 <span>
                   Webstorm <i className="text-primary text-sm">+ Vscode</i>
