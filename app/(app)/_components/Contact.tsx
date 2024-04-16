@@ -101,8 +101,8 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
         data-cursor="link"
         className="h-full py-10 md:py-0"
       >
-        <div className="flex h-full items-center justify-between">
-          <div className="text-secondary flex items-end text-3xl md:text-5xl xl:text-[6vw] ">
+        <div className="flex h-full items-center justify-between px-4">
+          <div className="text-secondary flex items-end text-3xl md:text-5xl xl:text-[6vw]">
             <h4>{title}</h4>
             {subtitle && (
               <span className="hidden text-2xl italic sm:block md:text-4xl">
@@ -131,6 +131,12 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
           ref={clipRef}
           className="bg-brown absolute inset-0 flex items-center gap-20 text-2xl font-bold text-white transition-all duration-300 md:text-4xl xl:text-8xl"
         >
+          <div className="absolute inset-0 z-[5] flex h-full">
+            <div className="from-brown text-secondary flex h-full h-full w-max items-center bg-gradient-to-r from-80% to-transparent px-4 pr-40 font-normal">
+              <h4>{title}</h4>
+            </div>
+            {/*<div className="from-brown h-full w-40 bg-gradient-to-r from-80% to-transparent"></div>*/}
+          </div>
           <MarqueeText text={account} />
           <MarqueeText text={account} />
         </div>
@@ -152,7 +158,7 @@ const MarqueeText = ({ text }: { text: string }) => {
   });
 
   return (
-    <div ref={ref} className="flex gap-20 font-medium italic">
+    <div ref={ref} className="flex gap-20 font-medium">
       <div>{text}</div>
       <div>{text}</div>
       <div>{text}</div>

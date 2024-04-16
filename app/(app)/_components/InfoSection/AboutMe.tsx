@@ -1,3 +1,4 @@
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedText from "#/components/AnimatedText";
@@ -5,6 +6,7 @@ import Flare from "#/components/Flare";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { splitWords } from "#/lib/utils";
+import profileImage from "#/public/images/Me.jpg";
 
 const phrase = `        Hey there! I'm folk, a 3rd-year Information Technology student at Bangkok University. I have a huge passion for coding, especially web development. In my free time, you'll likely find me working on coding projects or watching various YouTube contents.`;
 
@@ -100,16 +102,16 @@ const AboutMe = () => {
           </h2>
         </div>
         <div className="relative z-[2] flex justify-center">
-          <img
+          <Image
             ref={profileRef}
-            src={"/images/Me.jpg"}
+            src={profileImage}
             alt="Jirantanapat Kaeosomboon"
             width={500}
             className="rounded-xl object-cover grayscale-100"
           />
         </div>
         <div className="relative z-5 flex w-full justify-end">
-          <div className="-mt-12 text-2xl sm:max-w-[70%] md:max-w-[40vw]  md:text-3xl">
+          <div className="-mt-12 text-2xl font-medium sm:max-w-[70%] md:max-w-[40vw] md:text-3xl">
             <p className="leading-[1.2]" ref={paragraph}>
               {splitWords(phrase)}
             </p>

@@ -54,7 +54,7 @@ const HeroSection = () => {
         delay: 0.3,
         duration: 0.5,
         ease: "back.out(1.4)",
-        // onStart: () => initSmoothScroll(),
+        onStart: () => initSmoothScroll(),
       })
         .add(waveDown())
         .add(waveUp())

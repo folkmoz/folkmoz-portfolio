@@ -3,24 +3,41 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
+import image1 from "#/public/images/mtns/1.png";
+import image2 from "#/public/images/mtns/2.png";
+import image3 from "#/public/images/mtns/3.png";
+import image4 from "#/public/images/mtns/4.png";
+import image5 from "#/public/images/mtns/5.png";
+import image6 from "#/public/images/mtns/6.png";
+import image7 from "#/public/images/mtns/7.png";
+import image8 from "#/public/images/mtns/8.png";
+import image9 from "#/public/images/mtns/9.png";
+import image10 from "#/public/images/mtns/10.png";
+import image11 from "#/public/images/mtns/11.png";
+import image12 from "#/public/images/mtns/12.png";
+import image13 from "#/public/images/mtns/13.png";
+import image14 from "#/public/images/mtns/14.png";
+import image15 from "#/public/images/mtns/15.png";
+import image16 from "#/public/images/mtns/16.png";
+import Image, { StaticImageData } from "next/image";
 
 const images = [
-  "1.png",
-  "2.png",
-  "3.png",
-  "4.png",
-  "5.png",
-  "6.png",
-  "7.png",
-  "8.png",
-  "9.png",
-  "10.png",
-  "11.png",
-  "12.png",
-  "13.png",
-  "14.png",
-  "15.png",
-  "16.png",
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  image6,
+  image7,
+  image8,
+  image9,
+  image10,
+  image11,
+  image12,
+  image13,
+  image14,
+  image15,
+  image16,
 ];
 
 type SecondarySectionProps = {
@@ -354,13 +371,10 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
           />
         </div>
 
-        <div
-          ref={spotlightRef}
-          className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform"
-        />
+        {/*<div ref={spotlightRef} className="before:blur-0 before:backdrop-blur-0 opacity-0 before:absolute before:inset-0 before:z-0 before:z-10 before:rotate-0 before:rotate-30 before:scale-100 before:scale-150 before:bg-gradient-to-r before:from-[#000] before:to-[#fff] before:opacity-50 before:blur-[10px] before:backdrop-blur-[10px] before:backdrop-brightness-100 before:backdrop-brightness-200 before:backdrop-opacity-100 before:backdrop-opacity-50 before:backdrop-saturate-100 before:backdrop-saturate-200 before:backdrop-contrast-100 before:backdrop-contrast-200 before:backdrop-filter before:backdrop-filter before:transition-transform before:delay-100 before:duration-300 before:ease-in-out before:will-change-transform" />*/}
         <div
           ref={columnsRef}
-          className="flex -rotate-30 scale-[1.4] gap-1 opacity-0 grayscale-100"
+          className="flex -rotate-30 scale-[1.3] gap-1 opacity-0 grayscale-100"
         >
           <Column images={[images[4], images[10], images[14], images[9]]} />
           <Column images={[images[1], images[8], images[3], images[11]]} />
@@ -387,7 +401,6 @@ const ImageItem = ({
   right,
   top,
   scale = 1,
-  width = 200,
   scrollTween,
   className,
 }: ImageItemProps) => {
@@ -432,7 +445,7 @@ const ImageItem = ({
 };
 
 type ColumnProps = {
-  images: string[];
+  images: StaticImageData[];
 };
 
 const Column = ({ images }: ColumnProps) => {
@@ -440,12 +453,15 @@ const Column = ({ images }: ColumnProps) => {
     <div className="relative flex flex-1 flex-col gap-1">
       <div className="before:absolute before:inset-0 before:z-[1] before:bg-black/85" />
 
-      {images.map((src, i) => {
+      {images.map((image, i) => {
         return (
           <div key={i} className="h-full w-full overflow-hidden rounded-md">
-            <img
-              src={`/images/mtns/${src}`}
-              className="h-full w-full object-cover"
+            <Image
+              src={image}
+              className="object-cover"
+              alt={""}
+              loading="eager"
+              width={350}
             />
           </div>
         );
