@@ -11,6 +11,12 @@ const Home = () => {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
+
+    return () => {
+      window.onbeforeunload = () => {
+        window.scrollTo(0, 0);
+      };
+    };
   }, []);
 
   return (

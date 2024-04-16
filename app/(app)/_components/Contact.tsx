@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import AnimatedText from "#/components/AnimatedText";
 import { useGSAP } from "@gsap/react";
 
@@ -7,11 +7,11 @@ const ContactSection = () => {
   return (
     <>
       <section
-        className="h-screen w-full bg-white py-[5vh] px-10"
-        id="contacts"
+        className="h-screen w-full bg-white py-[5vh] pt-20 px-10"
+        id="Contacts"
       >
         <div className="flex h-full flex-col">
-          <div className="text-5xl md:text-8xl xl:text-9xl">
+          <div className="text-5xl font-bold md:text-8xl xl:text-9xl">
             <h3>
               <AnimatedText words={["Contacts"]} />
             </h3>
@@ -19,7 +19,7 @@ const ContactSection = () => {
           <div className="divide-primary border-primary mt-8 flex flex-1 flex-col divide-y-2 border-y-2">
             <ContactItem
               title={"Instagram"}
-              account={"@folk_moz"}
+              account={"folk_moz"}
               subtitle={"daily uses"}
               href="https://www.instagram.com/folk_moz/"
             />
@@ -30,7 +30,7 @@ const ContactSection = () => {
               href="mailto:jiran.folk@gmail.com"
             />
             <ContactItem
-              title={"Github"}
+              title={"GitHub"}
               account={"folkmoz"}
               href="https://www.github.com/folkmoz"
             />
@@ -63,7 +63,6 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
     const rect = clipRef.current!.getBoundingClientRect();
     const y = e.clientY - rect.top;
     const top = y < rect.height / 2;
-    const bottom = y > rect.height / 2;
 
     gsap.set(clipRef.current, {
       clipPath: top ? "inset(0% 0% 100% 0%)" : "inset(100% 0% 0% 0%)",
@@ -84,7 +83,7 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
       .timeline()
       .to(clipRef.current, {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.1,
+        duration: 0.2,
         ease: "power1",
       })
       .to(clipRef.current, {
@@ -95,28 +94,26 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
   });
 
   return (
-    <a href={href} target="_blank" className="group relative flex-1">
+    <a href={href} target="_blank" className="group relative md:flex-1">
       <div
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
         data-cursor="link"
-        className="h-full"
+        className="h-full py-10 md:py-0"
       >
-        <div className="flex items-center justify-between">
-          <div className="text-secondary text-3xl md:text-5xl xl:text-[8vw]">
-            <h4>
-              {title}
-              {subtitle && (
-                <span className="text-2xl italic md:text-4xl">
-                  — {subtitle}
-                </span>
-              )}
-            </h4>
+        <div className="flex h-full items-center justify-between">
+          <div className="text-secondary flex items-end text-3xl font-medium md:text-5xl xl:text-[6vw]">
+            <h4>{title}</h4>
+            {subtitle && (
+              <span className="hidden text-2xl italic sm:block md:text-4xl">
+                — {subtitle}
+              </span>
+            )}
           </div>
 
-          <div className="mt-12 mr-12">
+          <div className="mr-12">
             <svg
-              className="size-[64px]"
+              className="size-8 md:size-[64px]"
               viewBox="0 0 26 23"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +129,7 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
         <div
           style={{ clipPath: "inset(100% 0% 0% 0%)" }}
           ref={clipRef}
-          className="bg-primary absolute inset-0 flex items-center gap-20 text-2xl font-bold uppercase text-white transition-all duration-300 md:text-4xl xl:text-8xl"
+          className="bg-brown absolute inset-0 flex items-center gap-20 text-2xl font-bold text-white transition-all duration-300 md:text-4xl xl:text-8xl"
         >
           <MarqueeText text={account} />
           <MarqueeText text={account} />
@@ -155,7 +152,7 @@ const MarqueeText = ({ text }: { text: string }) => {
   });
 
   return (
-    <div ref={ref} className="flex gap-20">
+    <div ref={ref} className="flex gap-20 italic">
       <div>{text}</div>
       <div>{text}</div>
       <div>{text}</div>

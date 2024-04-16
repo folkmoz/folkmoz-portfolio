@@ -9,7 +9,7 @@ type AnimatedTextProps = {
   duration?: number;
   ease?: string;
   animate?: boolean;
-  inView?: boolean;
+  atViewport?: string;
 };
 
 const AnimatedText = ({
@@ -18,6 +18,7 @@ const AnimatedText = ({
   duration,
   ease,
   animate = true,
+  atViewport = "top 70%",
 }: AnimatedTextProps) => {
   const container = useRef<HTMLDivElement | null>(null);
   useGSAP(
@@ -41,7 +42,7 @@ const AnimatedText = ({
         delay: delay || 0,
         scrollTrigger: {
           trigger: container.current,
-          start: "top 70%",
+          start: atViewport,
         },
       });
     },
@@ -53,22 +54,21 @@ const AnimatedText = ({
         <span key={lineIdx}>
           {line.split(" ").map((word, wordIdx) => (
             <span className="inline-block" key={wordIdx + word}>
-              {word.split("").map((letter, letterIdx) => (
-                <Fragment key={letterIdx + letter}>
-                  <span className="relative inline-flex overflow-hidden">
-                    <span className="letter">
-                      {letter === " " ? "\u00A0" : letter}
-                    </span>
-                  </span>
-                  {wordIdx !== words.length - 1 &&
-                  letterIdx === word.length - 1 &&
-                  lineIdx !== words.length - 1 ? (
+              {word.split("").map((letter, letterIdx) => {
+                return (
+                  <Fragment key={letterIdx + letter}>
                     <span className="relative inline-flex overflow-hidden">
-                      <span className="letter">{"\u00A0"}</span>
+                      <span className="letter">{letter}</span>
                     </span>
-                  ) : null}
-                </Fragment>
-              ))}
+                    {letterIdx === word.length - 1 &&
+                    wordIdx !== line.split(" ").length - 1 ? (
+                      <span className="relative inline-flex overflow-hidden">
+                        <span className="letter">{"\u00A0"}</span>
+                      </span>
+                    ) : null}
+                  </Fragment>
+                );
+              })}
             </span>
           ))}
         </span>

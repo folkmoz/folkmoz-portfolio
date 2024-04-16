@@ -140,7 +140,7 @@ const HeroSection = () => {
 
   return (
     <section ref={container} className="sticky top-0">
-      <div className="relative flex h-screen w-screen flex-col justify-center p-4 lg:p-8">
+      <div className="bg-background relative flex h-screen w-screen flex-col justify-center p-4 lg:p-8">
         <div
           ref={titleRef}
           className="relative flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start"

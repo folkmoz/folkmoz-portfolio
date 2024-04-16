@@ -1,6 +1,7 @@
 import AboutMe from "./AboutMe";
 import LifeStyle from "#/app/(app)/_components/InfoSection/LifeStyle";
 import ContactSection from "#/app/(app)/_components/Contact";
+import ExperienceSection from "#/app/(app)/_components/ExperienceSection";
 
 const InfoSection = () => {
   return (
@@ -11,6 +12,8 @@ const InfoSection = () => {
       >
         <AboutMe />
         <LifeStyle />
+        <ExperienceSection />
+
         <ContactSection />
       </div>
     </>

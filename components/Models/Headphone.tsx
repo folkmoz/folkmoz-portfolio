@@ -86,7 +86,7 @@ export default function Headphone(props: HeadphoneProps) {
         duration: 1,
       });
 
-    // Move the headphone
+    // Move to top
     gsap
       .timeline({
         scrollTrigger: {

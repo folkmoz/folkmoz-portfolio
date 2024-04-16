@@ -46,8 +46,9 @@ const Cursor = () => {
     yTo.current(e.clientY);
 
     gsap.to(cursor.current, {
-      width: isTarget ? 100 : 16,
-      height: isTarget ? 100 : 16,
+      mixBlendMode: isTarget ? "normal" : "difference",
+      width: isTarget ? 120 : 20,
+      height: isTarget ? 120 : 20,
       duration: 0.2,
       ease: "circ.out",
     });

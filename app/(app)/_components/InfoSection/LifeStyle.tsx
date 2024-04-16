@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import FirstSection from "#/app/(app)/_components/InfoSection/LifeStyleSections/FirstSection";
 import SecondarySection from "#/app/(app)/_components/InfoSection/LifeStyleSections/SecondarySection";
 import ThirdSection from "#/app/(app)/_components/InfoSection/LifeStyleSections/ThirdSection";
+import ExperienceSection from "#/app/(app)/_components/ExperienceSection";
 
 const LifeStyle = () => {
   const [scrollTween, setScrollTween] = useState<gsap.core.Tween>();

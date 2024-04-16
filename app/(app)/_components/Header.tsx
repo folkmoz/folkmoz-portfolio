@@ -22,8 +22,7 @@ const Header = () => {
 
         <div className="flex gap-4">
           <AnimatedLink text="About Me" />
-          <AnimatedLink text="Projects" />
-          <AnimatedLink text="Contact" />
+          <AnimatedLink text="Contacts" />
         </div>
       </div>
     </header>
