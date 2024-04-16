@@ -12,7 +12,7 @@ const ContactSection = () => {
       >
         <div className="flex h-full flex-col">
           <div className="text-5xl font-bold md:text-8xl 2xl:text-9xl">
-            <h3>
+            <h3 className="text-brown">
               <AnimatedText words={["Contacts"]} />
             </h3>
           </div>
@@ -64,14 +64,15 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
     const y = e.clientY - rect.top;
     const top = y < rect.height / 2;
 
-    gsap.set(clipRef.current, {
-      clipPath: top ? "inset(0% 0% 100% 0%)" : "inset(100% 0% 0% 0%)",
-    });
-    gsap.to(clipRef.current, {
-      clipPath: "inset(0 0 0 0)",
-      duration: 0.1,
-      ease: "power1",
-    });
+    // gsap.set(clipRef.current, {
+    // clipPath: top ? "inset(0% 0% 100% 0%)" : "inset(100% 0% 0% 0%)",
+    // });
+    // gsap.to(clipRef.current, {
+    //   clipPath: "inset(0 0 0 0)",
+    //   duration: 0.1,
+    // });
+
+    clipRef.current!.style.clipPath = "inset(0% 0% 0% 0%)";
   });
 
   const onLeave = contextSafe((e: React.MouseEvent<HTMLDivElement>) => {
@@ -79,18 +80,18 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
     const y = e.clientY - rect.top;
     const bottom = y > rect.height / 2;
 
-    gsap
-      .timeline()
-      .to(clipRef.current, {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.2,
-        ease: "power1",
-      })
-      .to(clipRef.current, {
-        clipPath: bottom ? "inset(100% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
-        duration: 0.1,
-        ease: "power1",
-      });
+    // gsap
+    //   .timeline()
+    //   .to(clipRef.current, {
+    //     clipPath: "inset(0% 0% 0% 0%)",
+    //     duration: 0.3,
+    //   })
+    //   .to(clipRef.current, {
+    //     // clipPath: bottom ? "inset(100% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
+    //     clipPath: "inset(100% 0%)",
+    //     duration: 0.3,
+    //   });
+    clipRef.current!.style.clipPath = "inset(100% 0%)";
   });
 
   return (
@@ -127,13 +128,16 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
           </div>
         </div>
         <div
-          style={{ clipPath: "inset(100% 0% 0% 0%)" }}
+          style={{
+            clipPath: "inset(100% 0)",
+            transition: "all cubic-bezier(.1,.5,.5,1) 0.5s",
+          }}
           ref={clipRef}
           className="bg-brown absolute inset-0 flex items-center gap-20 text-2xl font-bold text-white transition-all duration-300 md:text-4xl xl:text-8xl"
         >
           <div className="absolute inset-0 z-[5] flex h-full">
-            <div className="from-brown text-secondary flex h-full h-full w-max items-center bg-gradient-to-r from-80% to-transparent px-4 pr-40 font-normal">
-              <h4>{title}</h4>
+            <div className="from-brown flex h-full h-full w-max items-center bg-gradient-to-r from-80% to-transparent px-4 pr-40 font-normal text-white">
+              <h4 className="text-3xl md:text-5xl xl:text-[6vw]">{title}</h4>
             </div>
             {/*<div className="from-brown h-full w-40 bg-gradient-to-r from-80% to-transparent"></div>*/}
           </div>
@@ -148,17 +152,20 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
 const MarqueeText = ({ text }: { text: string }) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(() => {
-    gsap.to(ref.current, {
-      x: -(ref.current!.offsetWidth + 80),
-      duration: 10,
-      repeat: -1,
-      ease: "linear",
-    });
-  });
+  useGSAP(
+    () => {
+      gsap.to(ref.current, {
+        x: -(ref.current!.offsetWidth + 80),
+        duration: 10,
+        repeat: -1,
+        ease: "linear",
+      });
+    },
+    { scope: ref },
+  );
 
   return (
-    <div ref={ref} className="flex gap-20 font-medium">
+    <div ref={ref} className="text-primary flex gap-20 font-medium italic">
       <div>{text}</div>
       <div>{text}</div>
       <div>{text}</div>

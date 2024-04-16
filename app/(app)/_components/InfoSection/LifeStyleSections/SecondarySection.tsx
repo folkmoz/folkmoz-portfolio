@@ -451,7 +451,7 @@ type ColumnProps = {
 const Column = ({ images }: ColumnProps) => {
   return (
     <div className="relative flex flex-1 flex-col gap-1">
-      <div className="before:absolute before:inset-0 before:z-[1] before:bg-black/85" />
+      <div className="before:absolute before:inset-0 before:z-[1] before:bg-black/90" />
 
       {images.map((image, i) => {
         return (

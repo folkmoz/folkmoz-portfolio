@@ -2,6 +2,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
+
+import MusicQuote from "#/public/images/MusicQoute.jpg";
+import BeMinePablo from "#/public/images/BeMinePablo.png";
 
 type ThirdSectionProps = {
   scrollTween: gsap.core.Tween;
@@ -94,9 +98,10 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
               </p>
             </div>
             <div className="">
-              <img
-                src="/images/MusicQoute.jpg"
+              <Image
+                src={MusicQuote}
                 width={500}
+                alt={"Music Quote"}
                 className="object-cover"
               />
             </div>
@@ -104,8 +109,8 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
 
           <div className="mt-14 flex items-center sm:mt-6 md:mt-16 md:justify-between md:gap-12 md:pr-[15vw]">
             <div className="hidden w-full md:block">
-              <img
-                src="/images/BeMinePablo.png"
+              <Image
+                src={BeMinePablo}
                 alt="Be Mine"
                 className="h-full w-full object-cover"
               />
