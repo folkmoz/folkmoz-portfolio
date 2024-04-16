@@ -103,6 +103,7 @@ const AboutMe = () => {
         </div>
         <div className="relative z-[2] flex justify-center">
           <Image
+            loading={"eager"}
             ref={profileRef}
             src={profileImage}
             alt="Jirantanapat Kaeosomboon"
