@@ -6,6 +6,7 @@ import AnimatedText from "#/components/AnimatedText";
 
 const ExperienceSection = () => {
   const container = useRef<HTMLDivElement | null>(null);
+  const waveRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -25,6 +26,16 @@ const ExperienceSection = () => {
         },
       },
     );
+
+    gsap.to(waveRef.current, {
+      x: "32%",
+      scrollTrigger: {
+        trigger: waveRef.current,
+        start: "40% bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
   });
 
   return (
@@ -164,7 +175,7 @@ const ExperienceSection = () => {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-4 w-[100%]">
+      <div ref={waveRef} className="absolute right-0 -bottom-4 w-[150%]">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#ffffff"

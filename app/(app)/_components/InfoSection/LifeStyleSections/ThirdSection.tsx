@@ -102,7 +102,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 src={MusicQuote}
                 width={500}
                 alt={"Music Quote"}
-                className="object-cover"
+                className="rounded-xl object-cover"
               />
             </div>
           </div>
@@ -112,11 +112,13 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
               <Image
                 src={BeMinePablo}
                 alt="Be Mine"
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-xl object-cover"
               />
             </div>
             <div className="md:w-2/3">
-              <h3 className="text-4xl 2xl:text-6xl">My treasure trove</h3>
+              <h3 className="text-4xl font-medium md:text-5xl 2xl:text-6xl">
+                My treasure trove
+              </h3>
               <a
                 href="https://open.spotify.com/user/31oy7kbqkeu3kxqa4rzdk5vfu3si"
                 target="_blank"
