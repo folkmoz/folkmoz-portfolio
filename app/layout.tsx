@@ -18,6 +18,7 @@ const font = localFont({
     },
     {
       path: "../public/fonts/Satoshi-Medium.otf",
+      weight: "500",
     },
   ],
 });

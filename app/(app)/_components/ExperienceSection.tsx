@@ -29,9 +29,9 @@ const ExperienceSection = () => {
 
   return (
     <div ref={container} className="relative flex h-full w-full text-white">
-      <div className="flex h-full w-full flex-col gap-8 pb-20 md:gap-36 md:pt-[20vh] md:px-[15vw] md:pb-[40vw]">
+      <div className="flex h-full w-full flex-col gap-8 pb-20 md:gap-36 md:pt-[20vh] md:px-36 md:pb-[40vw] 2xl:px-[15vw]">
         <div className="flex flex-col justify-between  md:flex-row">
-          <div className="text-5xl leading-[1.5] sm:text-6xl md:text-8xl">
+          <div className="text-5xl leading-[1.5] sm:text-6xl md:text-7xl 2xl:text-8xl">
             <h4>
               <AnimatedText words={["Hobby."]} />
             </h4>
@@ -60,7 +60,7 @@ const ExperienceSection = () => {
         </div>
 
         <div className="flex flex-col justify-between md:flex-row">
-          <div className="text-5xl leading-[1.5] sm:text-6xl md:text-8xl">
+          <div className="text-5xl leading-[1.5] sm:text-6xl md:text-7xl 2xl:text-8xl">
             <h4>
               <AnimatedText words={["Experience."]} />
             </h4>
@@ -132,7 +132,7 @@ const ExperienceSection = () => {
         </div>
 
         <div className="flex flex-col justify-between  md:flex-row">
-          <div className="text-5xl leading-[1.5] sm:text-6xl md:text-8xl">
+          <div className="text-5xl leading-[1.5] sm:text-6xl md:text-7xl 2xl:text-8xl">
             <h4>
               <AnimatedText words={["Tools I use."]} />
             </h4>

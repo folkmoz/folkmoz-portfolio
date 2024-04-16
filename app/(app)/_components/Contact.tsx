@@ -11,7 +11,7 @@ const ContactSection = () => {
         id="Contacts"
       >
         <div className="flex h-full flex-col">
-          <div className="text-5xl font-bold md:text-8xl xl:text-9xl">
+          <div className="text-5xl font-bold md:text-8xl 2xl:text-9xl">
             <h3>
               <AnimatedText words={["Contacts"]} />
             </h3>
@@ -102,7 +102,7 @@ const ContactItem = ({ title, account, subtitle, href }: ContactItemProps) => {
         className="h-full py-10 md:py-0"
       >
         <div className="flex h-full items-center justify-between">
-          <div className="text-secondary flex items-end text-3xl font-medium md:text-5xl xl:text-[6vw]">
+          <div className="text-secondary flex items-end text-3xl md:text-5xl xl:text-[6vw] ">
             <h4>{title}</h4>
             {subtitle && (
               <span className="hidden text-2xl italic sm:block md:text-4xl">
@@ -152,7 +152,7 @@ const MarqueeText = ({ text }: { text: string }) => {
   });
 
   return (
-    <div ref={ref} className="flex gap-20 italic">
+    <div ref={ref} className="flex gap-20 font-medium italic">
       <div>{text}</div>
       <div>{text}</div>
       <div>{text}</div>

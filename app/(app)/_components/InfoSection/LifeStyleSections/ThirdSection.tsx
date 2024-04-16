@@ -77,10 +77,12 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
         className="relative flex h-screen w-full flex-col py-20 pr-4 pl-14 text-white md:pl-[10vw]"
       >
         <div className="flex flex-col md:pl-[8vw]">
-          <div className="flex items-end md:gap-20 md:pr-[15vw]">
-            <div>
-              <h3 className="-ml-1.5 text-5xl font-bold md:text-8xl">Pop</h3>
-              <p className="text-3xl md:text-5xl">
+          <div className="flex flex-col-reverse md:flex-row md:gap-10 md:pr-[15vw] 2xl:items-end">
+            <div className="md:w-1/2">
+              <h3 className="-ml-1.5 text-5xl font-bold md:text-6xl 2xl:text-8xl">
+                Pop
+              </h3>
+              <p className="text-3xl md:text-4xl 2xl:text-5xl">
                 is the most genre I listen to.
               </p>
               <p className="text-secondary mt-5 text-2xl md:max-w-[40vw]">
@@ -91,23 +93,25 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 my face.
               </p>
             </div>
-            <div>
-              <img src="/images/MusicQoute.jpg" width={400} />
-            </div>
-          </div>
-
-          <div className="mt-14 flex flex-col sm:mt-6 sm:flex-row md:mt-16 md:items-center md:justify-between md:pr-[15vw]">
-            <div className="hidden md:block">
+            <div className="">
               <img
-                src="/images/BeMinePablo.png"
-                alt="Be Mine"
+                src="/images/MusicQoute.jpg"
+                width={500}
                 className="object-cover"
               />
             </div>
-            <div>
-              <h3 className="text-4xl sm:text-6xl md:-mt-10">
-                My treasure trove
-              </h3>
+          </div>
+
+          <div className="mt-14 flex items-center sm:mt-6 md:mt-16 md:justify-between md:gap-12 md:pr-[15vw]">
+            <div className="hidden w-full md:block">
+              <img
+                src="/images/BeMinePablo.png"
+                alt="Be Mine"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="md:w-2/3">
+              <h3 className="text-4xl 2xl:text-6xl">My treasure trove</h3>
               <a
                 href="https://open.spotify.com/user/31oy7kbqkeu3kxqa4rzdk5vfu3si"
                 target="_blank"
