@@ -199,8 +199,6 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         },
       });
 
-      console.log(isMobile, "isMobile");
-
       // God dance animation
       const backdrop = godDanceRef.current!.querySelector("div")!;
       const label = godDanceRef.current!.querySelector("span")!;
