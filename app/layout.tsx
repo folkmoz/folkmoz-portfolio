@@ -40,7 +40,7 @@ export default function RootLayout({
       <body
         className={cn(
           font.className,
-          "relative flex min-h-screen flex-col overflow-hidden",
+          "relative flex min-h-screen flex-col xl:overflow-hidden",
         )}
       >
         {children}
