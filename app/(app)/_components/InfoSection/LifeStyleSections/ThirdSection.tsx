@@ -78,7 +78,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
       <div
         id="ThirdSection"
         ref={container}
-        className="relative flex h-screen w-full flex-col pt-10 pr-[36px] pl-[100px] text-white md:pt-10 md:pr-8 md:pl-24 xl:py-20 xl:pl-[10vw]"
+        className="relative flex h-screen w-full flex-col pt-10 pr-[36px] pl-[100px] text-white md:pt-10 md:pr-8 md:pl-24 xl:pb-20 xl:pl-[10vw]"
       >
         <div className="flex flex-col xl:pl-[8vw]">
           <div className="flex flex-col-reverse justify-between gap-4 md:flex-row xl:pr-[10vw] 2xl:items-end 2xl:gap-10">
@@ -107,7 +107,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center sm:mt-6 md:justify-between md:gap-12 xl:mt-14 xl:pr-[10vw] 2xl:mt-16">
+          <div className="mt-4 flex items-center sm:mt-6 md:justify-between md:gap-12 xl:mt-10 xl:pr-[10vw] 2xl:mt-16">
             <div className="hidden w-full md:block">
               <Image
                 src={BeMinePablo}

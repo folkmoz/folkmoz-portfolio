@@ -2,7 +2,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 type FirstSectionProps = {
   setPinned: (value: boolean) => void;
@@ -10,7 +9,6 @@ type FirstSectionProps = {
 };
 
 const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
-  const [mounted, setMounted] = useState(false);
   const container = useRef<HTMLDivElement | null>(null);
   const title = useRef<HTMLDivElement | null>(null);
 
@@ -77,7 +75,7 @@ const FirstSection = ({ setPinned, scrollTween }: FirstSectionProps) => {
           isMobile ? "-=1" : "-=0.4",
         );
     },
-    { scope: container, dependencies: [scrollTween, mounted] },
+    { scope: container, dependencies: [scrollTween] },
   );
 
   return (
