@@ -1,4 +1,4 @@
-import { cn, splitWords } from "#/lib/utils";
+import { cn } from "#/lib/utils";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -20,7 +20,6 @@ import image14 from "#/public/images/mtns/14.png";
 import image15 from "#/public/images/mtns/15.png";
 import image16 from "#/public/images/mtns/16.png";
 import Image, { StaticImageData } from "next/image";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 const images = [
   image1,
@@ -200,6 +199,8 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         },
       });
 
+      console.log(isMobile, "isMobile");
+
       // God dance animation
       const backdrop = godDanceRef.current!.querySelector("div")!;
       const label = godDanceRef.current!.querySelector("span")!;
@@ -209,7 +210,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             trigger: godDanceRef.current,
             start: "top bottom",
             end: () =>
-              `+=${godDanceRef.current!.offsetWidth * (isMobile ? 0.3 : 0.65)}`,
+              `+=${godDanceRef.current!.offsetWidth * (isMobile ? 0.3 : 0.5)}`,
             scrub: true,
             containerAnimation: scrollTween,
           },
@@ -234,14 +235,14 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
             opacity: 1,
           },
           "<",
-        )
-        .to(
-          spotlightRef.current,
-          {
-            opacity: 1,
-          },
-          "-=0.9",
         );
+      // .to(
+      //   spotlightRef.current,
+      //   {
+      //     opacity: 1,
+      //   },
+      //   "-=0.9",
+      // );
     },
     { dependencies: [scrollTween] },
   );
@@ -317,7 +318,7 @@ const SecondarySection = ({ scrollTween }: SecondarySectionProps) => {
         </div>
         <div
           ref={paragraphRef}
-          className="absolute top-1/2 left-[70%] z-[5] w-full max-w-lg -translate-y-1/2 md:w-max md:max-w-full"
+          className="absolute top-1/2 left-[70%] z-[5] w-full max-w-lg -translate-y-1/2 md:w-full md:max-w-full"
         >
           <div className="text-2xl font-medium leading-[1.5] text-white md:text-4xl">
             <h3>
@@ -421,7 +422,7 @@ const ImageItem = ({
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: "#Music",
-        start: "bottom 84.3%",
+        start: "bottom 89%",
         containerAnimation: scrollTween,
         toggleActions: "play none none reverse",
       },
