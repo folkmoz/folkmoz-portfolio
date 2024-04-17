@@ -122,7 +122,7 @@ const HeroSection = () => {
           "<",
         );
 
-      gsap.to([titleRef.current, scrollRef.current], {
+      gsap.to(titleRef.current, {
         opacity: 0,
         // scale: 0.8,
         yPercent: -50,
@@ -133,8 +133,17 @@ const HeroSection = () => {
           scrub: 1,
         },
       });
-    },
 
+      gsap.to(scrollRef.current, {
+        clipPath: "inset(0 100% 0 0)",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top top",
+          end: "bottom 85%",
+          scrub: 1,
+        },
+      });
+    },
     { scope: container },
   );
 
