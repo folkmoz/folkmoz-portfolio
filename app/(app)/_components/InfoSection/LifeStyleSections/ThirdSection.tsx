@@ -78,11 +78,11 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
       <div
         id="ThirdSection"
         ref={container}
-        className="relative flex h-screen w-full flex-col pt-16 pr-[36px] pl-[120px] text-white md:pt-10 md:pr-8 md:pl-24 xl:py-20 xl:pl-[10vw]"
+        className="relative flex h-screen w-full flex-col pt-10 pr-[36px] pl-[100px] text-white md:pt-10 md:pr-8 md:pl-24 xl:py-20 xl:pl-[10vw]"
       >
         <div className="flex flex-col xl:pl-[8vw]">
-          <div className="flex flex-col-reverse justify-between gap-8 md:flex-row xl:pr-[10vw] 2xl:items-end 2xl:gap-10">
-            <div className="md:w-1/2">
+          <div className="flex flex-col-reverse justify-between gap-4 md:flex-row xl:pr-[10vw] 2xl:items-end 2xl:gap-10">
+            <div className="w-full md:w-1/2">
               <h3 className="text-4xl font-bold md:-ml-1.5 md:text-6xl 2xl:text-8xl">
                 Pop
               </h3>
@@ -107,7 +107,7 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
             </div>
           </div>
 
-          <div className="mt-8 flex items-center sm:mt-6 md:justify-between md:gap-12 xl:mt-14 xl:pr-[10vw] 2xl:mt-16">
+          <div className="mt-4 flex items-center sm:mt-6 md:justify-between md:gap-12 xl:mt-14 xl:pr-[10vw] 2xl:mt-16">
             <div className="hidden w-full md:block">
               <Image
                 src={BeMinePablo}
@@ -128,9 +128,9 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 <div
                   onMouseMove={(e) => onMouseMove(e, "spotify")}
                   onMouseLeave={() => onMouseLeave("spotify")}
-                  className="bg-brown group mt-5 flex items-center justify-between rounded-xl p-6 px-5 sm:mt-8"
+                  className="bg-brown group mt-4 flex items-center justify-between rounded-xl p-4 md:mt-6 md:p-6 md:px-5"
                 >
-                  <div className="flex gap-4">
+                  <div className="flex gap-2 md:gap-4">
                     <svg
                       viewBox="0 0 62 62"
                       fill="none"
@@ -152,19 +152,19 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                     </svg>
 
                     <div>
-                      <h4 className="text-xl md:text-2xl">Me on Spotify</h4>
-                      <div className="text-secondary mt-1">
+                      <h4 className="text-lg md:text-2xl">Me on Spotify</h4>
+                      <div className="text-secondary mt-1 text-sm md:text-base">
                         10 public playlists
                       </div>
                     </div>
                   </div>
 
                   <div
-                    className="rounded-full bg-black p-6"
+                    className="rounded-full bg-black p-5 md:p-6"
                     data-link={"spotify"}
                   >
                     <svg
-                      className="size-6 md:size-[24px]"
+                      className="size-[14px] md:size-[24px]"
                       viewBox="0 0 26 23"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -187,9 +187,9 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                 <div
                   onMouseMove={(e) => onMouseMove(e, "apple")}
                   onMouseLeave={() => onMouseLeave("apple")}
-                  className="bg-brown group mt-6 flex items-center justify-between rounded-xl p-6 px-5"
+                  className="bg-brown group mt-4 flex items-center justify-between rounded-xl p-4 md:mt-6 md:p-6 md:px-5"
                 >
-                  <div className="flex gap-4">
+                  <div className="flex gap-2 md:gap-4">
                     <svg
                       className="size-[56px] transition-transform duration-300 ease-in-out group-hover:scale-[1.1] md:size-[64px]"
                       viewBox="0 0 61 62"
@@ -304,19 +304,19 @@ const ThirdSection = ({ scrollTween }: ThirdSectionProps) => {
                     </svg>
 
                     <div>
-                      <h4 className="text-xl md:text-2xl">Me on Apple Music</h4>
-                      <div className="text-secondary mt-1">
+                      <h4 className="text-lg md:text-2xl">Me on Apple Music</h4>
+                      <div className="text-secondary mt-1 text-sm md:text-base">
                         4 public playlists
                       </div>
                     </div>
                   </div>
 
                   <div
-                    className="rounded-full bg-black p-6"
+                    className="rounded-full bg-black p-5 md:p-6"
                     data-link={"apple"}
                   >
                     <svg
-                      className="size-[20px] md:size-[24px]"
+                      className="size-[14px] md:size-[24px]"
                       viewBox="0 0 26 23"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

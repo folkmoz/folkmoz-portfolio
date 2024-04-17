@@ -97,7 +97,7 @@ const AboutMe = () => {
     >
       <div className="relative flex flex-col gap-8 p-4 lg:pt-20 lg:px-20">
         <div className="relative z-5">
-          <h2 className="text-secondary -mb-20 text-6xl font-bold uppercase text-white mix-blend-difference mix-blend-exclusion md:text-8xl lg:leading-[1.5] xl:text-9xl">
+          <h2 className="-mb-20 text-5xl font-bold uppercase text-white md:text-8xl lg:leading-[1.5] xl:text-9xl">
             <AnimatedText words={["About me."]} />
           </h2>
         </div>
